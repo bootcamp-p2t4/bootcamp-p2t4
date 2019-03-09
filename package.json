@@ -1,8 +1,11 @@
 {
-  "name": "bootcamp_P2T4",
+  "name": "bootcamp-p2t4",
   "version": "1.0.0",
-  "description": "Project 2 Team 4",
+  "description": "bootcamp project 2 team 4",
   "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "mocha",
     "start": "node server.js",
@@ -10,24 +13,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JarretYingling/Bootcamp_P2T4.git"
+    "url": "git+https://github.com/bootcamp-p2t4/bootcamp-p2t4.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JarretYingling/Bootcamp_P2T4/issues"
+    "url": "https://github.com/bootcamp-p2t4/bootcamp-p2t4/issues"
   },
-  "homepage": "https://github.com/JarretYingling/Bootcamp_P2T4#readme",
+  "homepage": "https://github.com/bootcamp-p2t4/bootcamp-p2t4#readme",
   "dependencies": {
-    "dotenv": "^6.2.0",
-    "eslint": "^5.15.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "mysql2": "^1.6.5",
     "sequelize": "^4.43.0"
   },
   "devDependencies": {
-    "mocha": "^6.0.2"
+    "dotenv": "^6.2.0",
+    "mocha": "^6.0.2",
+    "eslint": "^5.15.1"
   }
 }

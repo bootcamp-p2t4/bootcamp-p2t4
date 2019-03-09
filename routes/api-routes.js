@@ -7,6 +7,7 @@ module.exports = function (app) {
 
   // GET route to SELECT *
   app.get("/stocks/:ticker", function (req, res) {
+    log(req.url);
     log(`__dirname: ${__dirname}`);
     // if params
     if (req.params.ticker) {

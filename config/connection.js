@@ -28,6 +28,7 @@ if (config.use_env_variable) {
     pool: {
       max: 30,
       min: 0,
+      acquire: 30000,
       idel: 10000
     }
   });

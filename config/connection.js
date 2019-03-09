@@ -3,17 +3,17 @@ const log = global.console.log;
 /*eslint-env node*/
 
 // require dotenv
-const dotenv = global.require("dotenv").config({
+const dotenv = require("dotenv").config({
   path: ".env"
 });
 if (dotenv.error) throw dotenv.error;
 
 // assign environemnt
 const env = process.env.NODE_ENV || "development";
-const config = global.require(__dirname + "/../config/config.json")[env];
+const config = require(__dirname + "/../config/config.json")[env];
 
 // Sequelize (capital) will require sequelize standard library
-const Sequelize = global.require("sequelize");
+const Sequelize = require("sequelize");
 
 // sequelize (lower case) will reference connection to mysql database
 // Sequelize("database_name_db", "username", "password", {obj});

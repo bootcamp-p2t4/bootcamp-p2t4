@@ -1,12 +1,12 @@
 "use strict";
 const log = global.console.log;
 
-const fs = global.require("fs");
-const path = global.require("path");
+const fs = require("fs");
+const path = require("path");
 // Sequelize (capital) will require sequelize standard library
-const Sequelize = global.require("sequelize");
+const Sequelize = require("sequelize");
 // sequelize (lower case) will require connection.js module.exports object
-const sequelize = global.require("./../config/connection");
+const sequelize = require("./../config/connection");
 const basename = path.basename(__filename);
 
 const db = {};

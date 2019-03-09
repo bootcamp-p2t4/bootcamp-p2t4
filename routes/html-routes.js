@@ -11,5 +11,18 @@ module.exports = function (app) {
     log(`__dirname: ${__dirname}`);
     res.sendFile(path.join(__dirname, "../public/assets/index.html"));
   });
+  /*
+  app.post("/buy", function (req, res) {
+    log(req.url);
+    log(`__dirname: ${__dirname}`);
+    res.sendFile(path.join(__dirname, "../public/assets/index.html"));
+  });
+
+  app.post("/sell", function (req, res) {
+    log(req.url);
+    log(`__dirname: ${__dirname}`);
+    res.sendFile(path.join(__dirname, "../public/assets/index.html"));
+  });
+  */
 
 };

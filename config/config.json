@@ -2,9 +2,9 @@
   "development": {
     "username": "root",
     "password": "Mysql01!",
-    "database": "database_development",
+    "database": "stock_novice_db",
     "host": "127.0.0.1",
-    "dialect": "stock_picker_db"
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",

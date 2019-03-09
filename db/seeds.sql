@@ -1,10 +1,11 @@
-USE stock_picks_db;
+USE stock_novice_db;
 
 TRUNCATE TABLE tbl_stocks;
 
 INSERT INTO tbl_stocks
   (stock_name, stock_ticker)
   VALUES
+    ('Cash', 'CASH'),
     ('S&P 500', 'SP500'),
     ('Dow Jones Ind Avg', 'DJI'),
     ('NASDAQ', 'NASDAQ'),
@@ -13,16 +14,11 @@ INSERT INTO tbl_stocks
     ('Wells Fargo', 'WFC'),
     ('Amazon', 'AMZN'),
     ('Apple', 'AAPL'),
-    ('Google', 'GOOGL'),
-    ('Cash', 'CASH');
+    ('Google', 'GOOGL');
 
-INSERT INTO tbl_positions
-  (user_name, stock_ticker, number_shares)
-  VALUES
-    ('CASH', 100000);
+TRUNCATE TABLE tbl_prices;
 
-    
-INSERT INTO tbl_stock_prices
+INSERT INTO tbl_prices
   (stock_ticker, price_period, price_date, stock_price)
   VALUES
     ('S&P', 1, '2008-5-1', 1386),

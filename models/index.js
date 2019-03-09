@@ -1,20 +1,15 @@
 "use strict";
-/* global require */
+const log = global.console.log;
 
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
+const fs = global.require("fs");
+const path = global.require("path");
+// Sequelize (capital) will require sequelize standard library
+const Sequelize = global.require("sequelize");
+// sequelize (lower case) will require connection.js module.exports object
+const sequelize = global.require("./../config/connection");
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.json")[env];
-const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+const db = {};
 
 fs
   .readdirSync(__dirname)
@@ -42,5 +37,7 @@ sequelize.tblStocks.hasMany(tblStockPrices);
 tblStockPrices = sqlTable(tbl_stock_prices);
 sequelize.tblStockPrices.belongsTo(tblStocks);
 */
+
+log(JSON.parse(db));
 
 module.exports = db;

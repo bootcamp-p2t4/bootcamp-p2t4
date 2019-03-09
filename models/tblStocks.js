@@ -3,7 +3,7 @@
 // model.tblStocks
 module.exports = (sequelize, DataTypes) => {
 
-  return sequelize.define("tbl_stocks", {
+  const tblStocks = sequelize.define("tbl_stocks", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -16,9 +16,28 @@ module.exports = (sequelize, DataTypes) => {
     },
     stock_ticker: {
       type: DataTypes.STRING(255),
+      unique: true,
       notNull: true
     }
+  }, {
+    underscored: true,
+    timestamps: true
   });
+
+  /*
+  tblStocks.associate = function (db) {
+    tblStocks.hasMany(db.tblPrices, {
+      foreignKey: "stock_ticker",
+      sourceKey: "stock_ticker"
+    });
+
+    // convert return to const with return at end
+    // add another association insode the single tblStocks.associate
+
+  };
+  */
+ 
+  return tblStocks;
 
 };
 
@@ -36,4 +55,4 @@ tblStocks.sync()
     // do nothing
     // or populate data in new table
   });
-*/
+//*/

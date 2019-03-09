@@ -3,7 +3,7 @@
 // model.tblPrices
 module.exports = (sequelize, DataTypes) => {
 
-  return sequelize.define("tbl_prices", {
+  const tblPrices = sequelize.define("tbl_prices", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -26,7 +26,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       notNull: true
     }
+  }, {
+    underscored: true,
+    timestamps: true
   });
+
+  /*
+  tblPrices.associate = function (db) {
+    tblPrices.belongsTo(db.tblStocks, {
+      foreignKey: "stock_ticker",
+      targetKey: "stock_ticker"
+    });
+
+    // convert return to const with return at end
+    // add another association insode the single tblPrices.associate
+
+  };
+  */
+
+  return tblPrices;
 
 };
 

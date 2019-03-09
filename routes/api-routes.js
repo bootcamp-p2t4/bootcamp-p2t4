@@ -1,7 +1,7 @@
 "use strict";
 const log = global.console.log;
 
-const tblStocks = require("../models/tblStocks");
+const db = require("../models/index");
 
 module.exports = function (app) {
 
@@ -11,12 +11,12 @@ module.exports = function (app) {
     log(`__dirname: ${__dirname}`);
     // if params
     if (req.params.ticker) {
-      tblStocks.findOne(req.params.ticker, function (mysqlRes) {
+      db.tblStocks.findOne(req.params.ticker, function (mysqlRes) {
         log(mysqlRes);
         res.json(mysqlRes);
       });
     } else {
-      tblStocks.findAll(function (mysqlRes) {
+      db.tblStocks.findAll(function (mysqlRes) {
         log(mysqlRes);
         res.json(mysqlRes);
       });

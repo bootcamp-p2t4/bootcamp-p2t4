@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       notNull: true
     }
+  }, {
+    underscored: true,
+    timestamps: true
   });
 
 };

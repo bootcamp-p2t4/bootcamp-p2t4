@@ -141,3 +141,5 @@ INSERT INTO tbl_prices
     ('CASH', 10, '2009-2-1', 1),
     ('CASH', 11, '2009-3-1', 1),
     ('CASH', 12, '2019-3-1', 1);
+
+SET time_zone = 'US/Eastern';

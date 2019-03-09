@@ -2,7 +2,7 @@
 const log = global.console.log;
 
 // dependencies
-//const path = require("path");
+const db = require("./models"); // requiring dir defaults to index.js
 const express = require("express");
 const app = express();
 
@@ -23,6 +23,8 @@ require("./routes/html-routes.js")(app);
 
 const PORT = process.env.PORT || process.env.EXPRESS_PORT || 8080;
 // express listener
-app.listen(PORT, function () {
+app.listen(PORT, function (err) {
+  if (err) throw err;
   log(`express app listening on PORT ${PORT}`);
+  db.sequelize.sync();
 });

@@ -35,4 +35,12 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+/*
+tblStocks = sqlTable(tbl_stocks);
+sequelize.tblStocks.hasMany(tblStockPrices);
+
+tblStockPrices = sqlTable(tbl_stock_prices);
+sequelize.tblStockPrices.belongsTo(tblStocks);
+*/
+
 module.exports = db;

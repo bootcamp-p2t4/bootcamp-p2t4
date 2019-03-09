@@ -2,7 +2,7 @@
   "name": "bootcamp_P2T4",
   "version": "1.0.0",
   "description": "Project 2 Team 4",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha"
   },

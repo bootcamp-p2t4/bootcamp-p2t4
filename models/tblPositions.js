@@ -3,7 +3,7 @@
 // model.tblPositions
 module.exports = (sequelize, DataTypes) => {
 
-  return sequelize.define("tbl_positions", {
+  const tblPositions = sequelize.define("tbl_positions", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -14,11 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       notNull: true
     },
-    stock_ticker: {
+    monthly_period: {
       type: DataTypes.STRING(255),
       notNull: true
     },
-    number_shares: {
+    ticker: {
+      type: DataTypes.STRING(255),
+      notNull: true
+    },
+    shares: {
       type: DataTypes.INTEGER,
       notNull: true
     }
@@ -27,13 +31,24 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
-};
+  /*
+  tblUsers.associate = function (db) {
 
-// create table if it doesn't exist
-/*
-tblPositions.sync()
-  .then(function () {
-    // do nothing
-    // or populate data in new table
-  });
-*/
+    tblUsers.belongsTo(db.tblTransactions, {
+      foreignKey: "ticker",
+      targetKey: "ticker"
+    });
+
+    tblStocks.hasMany(db.tblTransactions, {
+      foreignKey: "ticker",
+      sourceKey: "ticker"
+    });
+
+    // add another association inside single tblUsers.associate block
+
+  };
+  */
+
+  return tblPositions;
+
+};

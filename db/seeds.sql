@@ -3,7 +3,7 @@ USE stock_novice_db;
 TRUNCATE TABLE tbl_stocks;
 
 INSERT INTO tbl_stocks
-  (stock_name, stock_ticker)
+  (stock, ticker)
   VALUES
     ('Cash', 'CASH'),
     ('S&P 500', 'SP500'),
@@ -19,7 +19,7 @@ INSERT INTO tbl_stocks
 TRUNCATE TABLE tbl_prices;
 
 INSERT INTO tbl_prices
-  (stock_ticker, price_period, price_date, stock_price)
+  (ticker, monthly_period, price_date, price)
   VALUES
     ('S&P', 1, '2008-5-1', 1386),
     ('S&P', 2, '2008-6-1', 1400),
@@ -45,18 +45,18 @@ INSERT INTO tbl_prices
     ('DJI', 10, '2009-2-1', 8001),
     ('DJI', 11, '2009-3-1', 7056),
     ('DJI', 12, '2019-3-1', 26020),
-    ('NDAQ', 1, '2008-5-1', 36),
-    ('NDAQ', 2, '2008-6-1', 35),
-    ('NDAQ', 3, '2008-7-1', 26),
-    ('NDAQ', 4, '2008-8-1', 28),
-    ('NDAQ', 5, '2008-9-1', 33),
-    ('NDAQ', 6, '2008-10-1', 33),
-    ('NDAQ', 7, '2008-11-1', 32),
-    ('NDAQ', 8, '2008-12-1', 21),
-    ('NDAQ', 9, '2009-1-1', 24),
-    ('NDAQ', 10, '2009-2-1', 21),
-    ('NDAQ', 11, '2009-3-1', 20),
-    ('NDAQ', 12, '2019-3-1', 92),
+    ('NASDAQ', 1, '2008-5-1', 36),
+    ('NASDAQ', 2, '2008-6-1', 35),
+    ('NASDAQ', 3, '2008-7-1', 26),
+    ('NASDAQ', 4, '2008-8-1', 28),
+    ('NASDAQ', 5, '2008-9-1', 33),
+    ('NASDAQ', 6, '2008-10-1', 33),
+    ('NASDAQ', 7, '2008-11-1', 32),
+    ('NASDAQ', 8, '2008-12-1', 21),
+    ('NASDAQ', 9, '2009-1-1', 24),
+    ('NASDAQ', 10, '2009-2-1', 21),
+    ('NASDAQ', 11, '2009-3-1', 20),
+    ('NASDAQ', 12, '2019-3-1', 92),
     ('JPM', 1, '2008-5-1', 48),
     ('JPM', 2, '2008-6-1', 43),
     ('JPM', 3, '2008-7-1', 34),
@@ -141,5 +141,3 @@ INSERT INTO tbl_prices
     ('CASH', 10, '2009-2-1', 1),
     ('CASH', 11, '2009-3-1', 1),
     ('CASH', 12, '2019-3-1', 1);
-
-SET time_zone = 'US/Eastern';

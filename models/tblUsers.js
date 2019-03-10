@@ -3,7 +3,7 @@
 // model.tblUsers
 module.exports = (sequelize, DataTypes) => {
 
-  return sequelize.define("tbl_users", {
+  const tblUsers = sequelize.define("tbl_users", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -18,13 +18,38 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       notNull: true
     },
+    user_email: {
+      type: DataTypes.STRING(255),
+      notNull: true
+    },
     monthly_period: {
       type: DataTypes.INTEGER,
-      notNull: true
+      notNull: true,
+      defaultValue: 1
     }
   }, {
     underscored: true,
     timestamps: true
   });
+
+  /*
+  tblUsers.associate = function (db) {
+
+    tblUsers.belongsTo(db.tblTransactions, {
+      foreignKey: "ticker",
+      targetKey: "ticker"
+    });
+
+    tblStocks.hasMany(db.tblTransactions, {
+      foreignKey: "ticker",
+      sourceKey: "ticker"
+    });
+
+    // add another association inside single tblUsers.associate block
+
+  };
+  */
+
+  return tblUsers;
 
 };

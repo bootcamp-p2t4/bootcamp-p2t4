@@ -1,4 +1,76 @@
-<section class="row">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-4 text-center">Stock Novice</h2>
+    <p class="lead text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, nulla?</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati tempora deserunt omnis sint ab quam,
+        vero perspiciatis, voluptatum maxime quibusdam quos placeat blanditiis ea magni nemo et illo voluptatem
+        officia. Vero adipisci dolorem veniam autem dolores velit fuga perferendis dolorum, cupiditate neque quia,
+        tempora earum magni nemo animi, architecto a?</p>
+    </div>
+  </div>
+</div>
+
+<br>
+
+{{!-- Column Names for Stock Buy/Sell Table --}}
+<div class="container" id="formColumn">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-2">
+      <h5>Stock Name</h5>
+    </div>
+    <div class="col-md-2">
+      <h5>Ticker</h5>
+    </div>
+    <div class="col-md-2">
+      <h5>Price</h5>
+    </div>
+    <div class="col-md-2">
+      <h5>Shares</h5>
+    </div>
+  </div>
+  
+   {{!-- Form for Stock Buy/Sell Table --}}
+  <form action="" method="POST">
+    <div class="form-row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-2">
+        <input type="hidden" class="form-control stock" value="{{this.stock}}">
+      </div>
+      <div class="col-md-2">
+        <input type="hidden" class="form-control ticker" value="{{this.ticker}}">
+      </div>
+      <div class="col-md-2">
+        <input type="hidden" class="form-control price" value="{{this.price}}">
+      </div>
+      <div class="col-md-2">
+        <input type="input" class="form-control shares" placeholder="100" value="">
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-primary buy">Buy</button>
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-primary sell">Sell</button>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary sell">Next Period</button>
+  </form>
+</div>
+
+
+
+
+
+
+{{!-- <section class="row">
   <div class="col-12 col-md-4">
     <h2 class="text-center">Burgers ready to eat!</h2>
     <ul>
@@ -43,4 +115,4 @@
       {{/each}}
     </ul>
   </div><!-- end row 2 col 3 -->
-</section><!-- end row 2 -->
+</section><!-- end row 2 --> --}}

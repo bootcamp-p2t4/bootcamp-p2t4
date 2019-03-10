@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       notNull: true
     },
+    stock: {
+      type: DataTypes.STRING(255),
+      notNull: true
+    },
     ticker: {
       type: DataTypes.STRING(255),
       notNull: true

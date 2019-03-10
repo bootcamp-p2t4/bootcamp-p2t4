@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       notNull: true
     },
-    stock_ticker: {
+    ticker: {
       type: DataTypes.STRING(255),
       notNull: true
     },
-    price_period: {
+    monthly_period: {
       type: DataTypes.INTEGER,
       notNull: true
     },
@@ -22,24 +22,28 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       notNull: true
     },
-    stock_price: {
+    price: {
       type: DataTypes.INTEGER,
       notNull: true
     }
   }, {
-    underscored: true,
-    timestamps: true
+    timestamps: false
   });
 
   /*
-  tblPrices.associate = function (db) {
-    tblPrices.belongsTo(db.tblStocks, {
-      foreignKey: "stock_ticker",
-      targetKey: "stock_ticker"
+  tblUsers.associate = function (db) {
+
+    tblUsers.belongsTo(db.tblTransactions, {
+      foreignKey: "ticker",
+      targetKey: "ticker"
     });
 
-    // convert return to const with return at end
-    // add another association insode the single tblPrices.associate
+    tblStocks.hasMany(db.tblTransactions, {
+      foreignKey: "ticker",
+      sourceKey: "ticker"
+    });
+
+    // add another association inside single tblUsers.associate block
 
   };
   */
@@ -47,12 +51,3 @@ module.exports = (sequelize, DataTypes) => {
   return tblPrices;
 
 };
-
-// create table if it doesn't exist
-/*
-tblPrices.sync()
-  .then(function () {
-    // do nothing
-    // or populate data in new table
-  });
-*/

@@ -1,47 +1,47 @@
 TRUNCATE TABLE tbl_users;
 
 INSERT INTO tbl_users
-  (user_name, user_password, user_email, monthly_period)
+  (user_name, user_password, user_email, monthly_period, created_at, updated_at)
 VALUES
-  ('user', 'password', 'user@domain.com', 1);
+  ('user', 'password', 'user@domain.com', 2, NOW(), NOW());
 
 TRUNCATE TABLE tbl_transactions;
 
 INSERT INTO tbl_transactions
-  (user_name, buy_sell, number_shares, stock_ticker, monthly_period)
+  (user_name, monthly_period, buy_sell, ticker, shares, created_at, updated_at)
 VALUES
-  ('user', 'buy', 100000, 'CASH', 1),
-  ('user', 'buy', 1, 'SP500', 1),
-  ('user', 'buy', 2, 'DJI', 2),
-  ('user', 'buy', 3, 'NASDAQ', 3),
-  ('user', 'buy', 4, 'JPM', 4),
-  ('user', 'buy', 5, 'BAC', 5),
-  ('user', 'buy', 6, 'WF', 6),
-  ('user', 'buy', 7, 'AMZN', 7),
-  ('user', 'buy', 8, 'APPL', 8),
-  ('user', 'buy', 9, 'GOOGL', 9),
-  ('user', 'sell', 1, 'SP500', 10),
-  ('user', 'sell', 2, 'DJI', 10),
-  ('user', 'sell', 3, 'NASDAQ', 10),
-  ('user', 'sell', 4, 'JPM', 10),
-  ('user', 'sell', 5, 'BAC', 10),
-  ('user', 'sell', 6, 'WF', 10),
-  ('user', 'sell', 7, 'AMZN', 10),
-  ('user', 'sell', 8, 'APPL', 10),
-  ('user', 'sell', 9, 'GOOGL', 10);
+  ('user', 1, 'buy', 'CASH', 100000, NOW(), NOW()),
+  ('user', 1, 'buy', 'SP500', 2, NOW(), NOW()),
+  ('user', 1, 'buy', 'DJI', 4, NOW(), NOW()),
+  ('user', 1, 'buy', 'NASDAQ', 6, NOW(), NOW()),
+  ('user', 1, 'buy', 'JPM', 8, NOW(), NOW()),
+  ('user', 1, 'buy', 'BAC', 10, NOW(), NOW()),
+  ('user', 1, 'buy', 'WFC', 12, NOW(), NOW()),
+  ('user', 1, 'buy', 'AMZN', 14, NOW(), NOW()),
+  ('user', 1, 'buy', 'APPL', 16, NOW(), NOW()),
+  ('user', 1, 'buy', 'GOOGL', 18, NOW(), NOW()),
+  ('user', 1, 'sell', 'SP500', 1, NOW(), NOW()),
+  ('user', 1, 'sell', 'DJI', 2, NOW(), NOW()),
+  ('user', 1, 'sell', 'NASDAQ', 3, NOW(), NOW()),
+  ('user', 1, 'sell', 'JPM', 4, NOW(), NOW()),
+  ('user', 1, 'sell', 'BAC', 5, NOW(), NOW()),
+  ('user', 1, 'sell', 'WFC', 6, NOW(), NOW()),
+  ('user', 1, 'sell', 'AMZN', 7, NOW(), NOW()),
+  ('user', 1, 'sell', 'APPL', 8, NOW(), NOW()),
+  ('user', 1, 'sell', 'GOOGL', 9, NOW(), NOW());
 
 TRUNCATE TABLE tbl_positions;
 
 INSERT INTO tbl_positions
-  (user_name, stock_ticker, number_shares)
+  (user_name, monthly_period, ticker, shares, created_at, updated_at)
 VALUES
-  ('user', 'CASH', 100000),
-  ('user', 'SP500', 1),
-  ('user', 'DJI', 2),
-  ('user', 'NASDAQ', 3),
-  ('user', 'JPM', 4),
-  ('user', 'BAC', 5),
-  ('user', 'WF', 6),
-  ('user', 'AMZN', 7),
-  ('user', 'APPL', 8),
-  ('user', 'GOOGL', 9);
+  ('user', 1, 'CASH', 69119, NOW(), NOW()),
+  ('user', 1, 'SP500', 1, NOW(), NOW()),
+  ('user', 1, 'DJI', 2, NOW(), NOW()),
+  ('user', 1, 'NASDAQ', 3, NOW(), NOW()),
+  ('user', 1, 'JPM', 4, NOW(), NOW()),
+  ('user', 1, 'BAC', 5, NOW(), NOW()),
+  ('user', 1, 'WFC', 6, NOW(), NOW()),
+  ('user', 1, 'AMZN', 7, NOW(), NOW()),
+  ('user', 1, 'APPL', 8, NOW(), NOW()),
+  ('user', 1, 'GOOGL', 9, NOW(), NOW());

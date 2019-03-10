@@ -1,6 +1,7 @@
 #border {
     border-color: black;
     border-style: solid;
+    border-width: 0.1px;
     padding: 6px 0 6px 0;
 }
 
@@ -13,28 +14,3 @@
     width: 98%
 }
 
-/* html,
-body,
-header,
-nav,
-section,
-article,
-aside,
-footer,
-div,
-table,
-th,
-tr,
-td,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  padding: 1px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #000000;
-} */

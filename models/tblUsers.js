@@ -3,7 +3,7 @@
 // model.tblUsers
 module.exports = (sequelize, DataTypes) => {
 
-  const tblUsers = sequelize.define("tbl_users", {
+  const tbl_users = sequelize.define("tbl_users", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -50,6 +50,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   */
 
-  return tblUsers;
+  return tbl_users;
 
 };

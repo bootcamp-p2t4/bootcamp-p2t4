@@ -1,34 +1,33 @@
 "use strict";
 
-// model.tblPositions
+// model.tblPrices
 module.exports = (sequelize, DataTypes) => {
 
-  const tblPositions = sequelize.define("tbl_positions", {
+  const tbl_prices = sequelize.define("tbl_prices", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       notNull: true
     },
-    user_name: {
-      type: DataTypes.STRING(255),
-      notNull: true
-    },
-    monthly_period: {
-      type: DataTypes.STRING(255),
-      notNull: true
-    },
     ticker: {
       type: DataTypes.STRING(255),
       notNull: true
     },
-    shares: {
+    monthly_period: {
+      type: DataTypes.INTEGER,
+      notNull: true
+    },
+    price_date: {
+      type: DataTypes.DATE,
+      notNull: true
+    },
+    price: {
       type: DataTypes.INTEGER,
       notNull: true
     }
   }, {
-    underscored: true,
-    timestamps: true
+    timestamps: false
   });
 
   /*
@@ -49,6 +48,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   */
 
-  return tblPositions;
+  return tbl_prices;
 
 };

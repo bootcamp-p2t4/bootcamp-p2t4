@@ -3,7 +3,7 @@
 // model.tblPrices
 module.exports = (sequelize, DataTypes) => {
 
-  const tblPrices = sequelize.define("tbl_prices", {
+  const tbl_prices = sequelize.define("tbl_prices", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -31,23 +31,29 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   /*
-  tblUsers.associate = function (db) {
+  // sequelize model table associations
+  tbl_prices.associate = function (db) {
 
-    tblUsers.belongsTo(db.tblTransactions, {
-      foreignKey: "ticker",
-      targetKey: "ticker"
+    tbl_prices.belongsTo(db.tbl_stocks, {
+      targetKey: "ticker",
+      foreignKey: "ticker"
     });
 
-    tblStocks.hasMany(db.tblTransactions, {
-      foreignKey: "ticker",
-      sourceKey: "ticker"
+    tbl_prices.belongsTo(db.tbl_users, {
+      targetKey: "monthly_period",
+      foreignKey: "monthly_period"
     });
 
-    // add another association inside single tblUsers.associate block
+//  tblprices.hasMany(db.tblTransactions, {
+//    sourceKey: "ticker",
+//    foreignKey: "ticker"
+//  });
+
+    // add additional associations inside single tbl_name.associate block
 
   };
   */
 
-  return tblPrices;
+  return tbl_prices;
 
 };

@@ -3,7 +3,7 @@
 // model.tblTransactions
 module.exports = (sequelize, DataTypes) => {
 
-  const tblTransactions = sequelize.define("tbl_transactions", {
+  const tbl_transactions = sequelize.define("tbl_transactions", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -53,6 +53,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   */
 
-  return tblTransactions;
+  return tbl_transactions;
 
 };

@@ -5,8 +5,7 @@ const log = global.console.log;
 const db = require("./models"); // requiring dir defaults to index.js
 const express = require("express");
 const app = express();
-
-var exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({
   defaultLayout: "main"

@@ -18,7 +18,22 @@ module.exports = function (app) {
   app.get("/", (req, res) => {
     log(req.url);
     log(`__dirname: ${__dirname}`);
-    res.sendFile(path.join(__dirname, "../public/assets/index.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
+
+  // GET /positions route
+  app.get("/positions", function (req, res) {
+    log(req.url);
+    log(`__dirname: ${__dirname}`);
+    db.tbl_stocks.findAll({}).then(function (sqlStocks) {
+      //log(sqlStocks);
+      sqlStocks = parseSequelize(sqlStocks);
+      log(sqlStocks);
+      res.render("index", {
+        stocks: sqlStocks
+      });
+      //res.json(sqlStocks);
+    });
   });
 
   // GET /stocks route
@@ -31,7 +46,7 @@ module.exports = function (app) {
       log(sqlStocks);
       /*
       res.render("index", {
-        stocks: tblStocksResult
+        stocks: sqlStocks
       });
       */
       res.json(sqlStocks);

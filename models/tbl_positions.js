@@ -1,6 +1,6 @@
 "use strict";
 
-// model.tblPositions
+// model.tbl_positions
 module.exports = (sequelize, DataTypes) => {
 
   const tbl_positions = sequelize.define("tbl_positions", {
@@ -32,22 +32,32 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   /*
-  tblUsers.associate = function (db) {
+  // sequelize model table associations
+  tbl_positions.associate = function (db) {
 
-    tblUsers.belongsTo(db.tblTransactions, {
-      foreignKey: "ticker",
-      targetKey: "ticker"
+    tbl_positions.belongsTo(db.tbl_users, {
+      targetKey: "monthly_period",
+      foreignKey: "monthly_period"
     });
 
-    tblStocks.hasMany(db.tblTransactions, {
-      foreignKey: "ticker",
-      sourceKey: "ticker"
+    tbl_positions.belongsTo(db.tbl_users, {
+      targetKey: "monthly_period",
+      foreignKey: "monthly_period"
     });
 
-    // add another association inside single tblUsers.associate block
+    
+//  tblStocks.hasMany(db.tblTransactions, {
+//    sourceKey: "ticker",
+//    foreignKey: "ticker"
+//  });
+    
+    
+
+    // add additional associations inside single tbl_name.associate block
 
   };
   */
+
 
   return tbl_positions;
 

@@ -22,7 +22,8 @@
 <div class="container" id="border">
     <h2 class="text-center">Stocks and Indexes</h2>
     <br>
-    <div class="row">
+    <div class="container">
+      <div class="row">
       {{!-- <div class="col-md-1">
       </div> --}}
       <div class="col-md-2">
@@ -33,6 +34,9 @@
       </div>
       <div class="col-md-2">
         <h5 class="text-center">Price</h5>
+      </div>
+      <div class="col-md-2">
+        <h5 class="text-center">Shares</h5>
       </div>
       <div class="col-md-2">
         <h5 class="text-center">Shares to Buy</h5>
@@ -54,46 +58,82 @@
         <div class="col-md-2">
           <input type="text" class="form-control" id="price" placeholder="shares" value="this.shares" disabled>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
           <input type="input" class="form-control" id="buy_shares" placeholder="100" value="">
         </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-primary" id="buy">Buy</button>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary ml-5 mb-2" id="buy">Buy</button>
+        </div>
         </div>
       </form>
-      <form id="form-positions-sell" method="POST" action="/sell"></form>  
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-primary" id="sell">Sell</button>
-        </div>
-        <div class="">
-          <input type="hidden" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}" disabled>
-        </div>
-        <div class="">
-          <input type="hidden" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}"disabled>
-        </div>
-        <div class="">
-          <input type="hidden" class="form-control" id="price" placeholder="price" value="this.price" disabled>
-        </div>
-        <div class="col-md-1">
-          <input type="input" class="form-control" id="sell_shares" placeholder="100" value="">
-        </div>
-      </div>
-    </form>
     {{/each}}
-    <br>
-    <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
-      <div class="row">
-        <div class="offset-md-9">
-          <button type="submit" class="btn btn-primary" id="btn-next_monthly-period">Next Period</button>
-        </div>
+</div>
+
+
+    </div>
+    
+
+<div class="container" id="border">
+<div class="row">
+      {{!-- <div class="col-md-1">
+      </div> --}}
+      <div class="col-md-2">
+        <h5 class="text-center">Stock</h5>
       </div>
-    </form>
+      <div class="col-md-2">
+        <h5 class="text-center">Ticker</h5>
+      </div>
+      <div class="col-md-2">
+        <h5 class="text-center">Price</h5>
+      </div>
+      <div class="col-md-2">
+        <h5 class="text-center">Shares</h5>
+      </div>
+      <div class="col-md-2">
+        <h5 class="text-center">Shares to Sell</h5>
+      </div>
+    </div>
+
+    {{#each positions}}
+    <form id="form-positions-sell" method="POST" action="/sell">
+      <div class="form-row" id="stockList">
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}" disabled>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}" disabled>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="price" placeholder="price" value="this.price" disabled>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="price" placeholder="shares" value="this.shares" disabled>
+        </div>
+        <div class="col-md-2">
+          <input type="input" class="form-control" id="buy_shares" placeholder="100" value="">
+        </div>
+      <div class="col-md-2">
+          <button type="submit" class="btn btn-primary ml-5 mb-2" id="buy">Sell</button>
+      </div>
+      </div>
+      </form>
+    {{/each}}
+</div>
+    <br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
+          <button type="submit" class="btn btn-primary" id="btn-next_monthly-period">Next Period</button>
+        </form>
+    </div>
   </div>
+</div>
+  
 
-  <br>
-  <br>
 
-  <div class="container" id="border">
+<div class="container" id="border">
     <h2 class="text-center">Current Positions</h2>
     <br>
     <div class="row">

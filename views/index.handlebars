@@ -23,8 +23,8 @@
     <h2 class="text-center">Stocks and Indexes</h2>
     <br>
     <div class="row">
-      <div class="col-md-1">
-      </div>
+      {{!-- <div class="col-md-1">
+      </div> --}}
       <div class="col-md-2">
         <h5 class="text-center">Stock</h5>
       </div>
@@ -35,32 +35,47 @@
         <h5 class="text-center">Price</h5>
       </div>
       <div class="col-md-2">
-        <h5 class="text-center">Shares</h5>
+        <h5 class="text-center">Shares to Buy</h5>
       </div>
     </div>
 
     {{#each positions}}
-    <form id="form-positions" method="POST" action="/buy">
+    <form id="form-positions-buy" method="POST" action="/buy">
       <div class="form-row" id="stockList">
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}" disabled>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}" disabled>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="price" placeholder="price" value="this.price" disabled>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="price" placeholder="shares" value="this.shares" disabled>
+        </div>
         <div class="col-md-1">
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}">
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}">
-        </div>
-        <div class="col-md-2">
-          <input type="price" class="form-control" id="price" placeholder="price" value="this.price">
-        </div>
-        <div class="col-md-2">
-          <input type="input" class="form-control" id="shares" placeholder="100" value="">
+          <input type="input" class="form-control" id="buy_shares" placeholder="100" value="">
         </div>
         <div class="col-md-1">
           <button type="submit" class="btn btn-primary" id="buy">Buy</button>
         </div>
+      </form>
+      <form id="form-positions-sell" method="POST" action="/sell"></form>  
         <div class="col-md-1">
           <button type="submit" class="btn btn-primary" id="sell">Sell</button>
+        </div>
+        <div class="">
+          <input type="hidden" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}" disabled>
+        </div>
+        <div class="">
+          <input type="hidden" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}"disabled>
+        </div>
+        <div class="">
+          <input type="hidden" class="form-control" id="price" placeholder="price" value="this.price" disabled>
+        </div>
+        <div class="col-md-1">
+          <input type="input" class="form-control" id="sell_shares" placeholder="100" value="">
         </div>
       </div>
     </form>

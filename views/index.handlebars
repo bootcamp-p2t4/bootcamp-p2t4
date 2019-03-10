@@ -39,33 +39,37 @@
       </div>
     </div>
 
-    <form action="/" method="POST">
+    {{#each positions}}
+    <form id="form-positions" method="POST" action="/buy">
       <div class="form-row" id="stockList">
         <div class="col-md-1">
         </div>
         <div class="col-md-2">
-          <input type="hidden" class="form-control" id="stock" placeholder="stock" value="">
+          <input type="text" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}">
         </div>
         <div class="col-md-2">
-          <input type="hidden" class="form-control" id="ticker" placeholder="ticker" value="">
+          <input type="text" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}">
         </div>
         <div class="col-md-2">
-          <input type="hidden" class="form-control" id="price" placeholder="price" value="">
+          <input type="price" class="form-control" id="price" placeholder="price" value="this.price">
         </div>
         <div class="col-md-2">
           <input type="input" class="form-control" id="shares" placeholder="100" value="">
         </div>
         <div class="col-md-1">
-          <button type="submit" method="POST" class="btn btn-primary" id="buy">Buy</button>
+          <button type="submit" class="btn btn-primary" id="buy">Buy</button>
         </div>
         <div class="col-md-1">
-          <button type="submit" method="POST" class="btn btn-primary" id="sell">Sell</button>
+          <button type="submit" class="btn btn-primary" id="sell">Sell</button>
         </div>
       </div>
-      <br>
+    </form>
+    {{/each}}
+    <br>
+    <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
       <div class="row">
         <div class="offset-md-9">
-          <button type="submit" method="POST" class="btn btn-primary" id="nextPeriod">Next Period</button>
+          <button type="submit" class="btn btn-primary" id="btn-next_monthly-period">Next Period</button>
         </div>
       </div>
     </form>

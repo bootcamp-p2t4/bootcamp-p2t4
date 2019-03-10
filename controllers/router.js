@@ -30,7 +30,7 @@ module.exports = function (app) {
       sqlStocks = parseSequelize(sqlStocks);
       log(sqlStocks);
       res.render("index", {
-        stocks: sqlStocks
+        positions: sqlStocks
       });
       //res.json(sqlStocks);
     });

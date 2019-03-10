@@ -14,8 +14,17 @@ const parseSequelize = (sqlResults) => {
 
 module.exports = function (app) {
 
-  // GET / route
+  // METHOD route
+
+  // GET /
   app.get("/", (req, res) => {
+    log(req.url);
+    log(`__dirname: ${__dirname}`);
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
+
+  // POST /positions
+  app.post("/login", (req, res) => {
     log(req.url);
     log(`__dirname: ${__dirname}`);
     res.sendFile(path.join(__dirname, "../public/index.html"));

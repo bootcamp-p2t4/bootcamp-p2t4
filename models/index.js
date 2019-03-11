@@ -11,6 +11,9 @@ const basename = path.basename(__filename);
 
 const db = {};
 
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -23,11 +26,9 @@ fs
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
+    log(`sequelize associating ${modelName}`);
     db[modelName].associate(db);
   }
 });
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 module.exports = db;

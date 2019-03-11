@@ -3,14 +3,7 @@ const log = global.console.log;
 
 const path = require("path");
 const db = require("../models"); // requiring dir defaults to index.js
-
-const parseSequelize = (sqlResults) => {
-  const queryData = [];
-  sqlResults.forEach(element => {
-    queryData.push(element.dataValues);
-  });
-  return queryData;
-};
+const logic = require("./logic");
 
 module.exports = function (app) {
 
@@ -19,39 +12,52 @@ module.exports = function (app) {
   // GET /
   app.get("/", (req, res) => {
     log(req.url);
-    log(`__dirname: ${__dirname}`);
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  // POST /positions
+  // POST /login
   app.post("/login", (req, res) => {
-    log(req.url);
+    log(req.body);
     log(`__dirname: ${__dirname}`);
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  // GET /positions route
-  app.get("/positions", function (req, res) {
+  // POST /positions route
+  app.post("/positions", function (req, res) {
     log(req.url);
-    log(`__dirname: ${__dirname}`);
     db.tbl_stocks.findAll({}).then(function (sqlStocks) {
-      //log(sqlStocks);
-      sqlStocks = parseSequelize(sqlStocks);
+      sqlStocks = logic.parseSequelize(sqlStocks);
       log(sqlStocks);
       res.render("index", {
         positions: sqlStocks
       });
-      //res.json(sqlStocks);
     });
   });
 
-  // GET /stocks route
+  // GET /test
+  app.get("/test", (req, res) => {
+    log(req.url);
+    log(`__dirname: ${__dirname}`);
+    db.tbl_positions.findAll({}).then(function (sqlPositions) {
+      log(sqlPositions);
+      sqlPositions = logic.parseSequelize(sqlPositions);
+      log(sqlPositions);
+      /*
+      res.render("index", {
+        positions: sqlPositions
+      });
+      */
+      res.json(sqlPositions);
+    });
+  });
+
+  // GET /stocks route via SELECT DISTINCT stock, ticker FROM transactions
   app.get("/stocks", function (req, res) {
     log(req.url);
     log(`__dirname: ${__dirname}`);
     db.tbl_stocks.findAll({}).then(function (sqlStocks) {
       //log(sqlStocks);
-      sqlStocks = parseSequelize(sqlStocks);
+      sqlStocks = logic.parseSequelize(sqlStocks);
       log(sqlStocks);
       /*
       res.render("index", {
@@ -68,7 +74,7 @@ module.exports = function (app) {
     log(`__dirname: ${__dirname}`);
     db.tbl_prices.findAll({}).then(function (sqlPrices) {
       //log(sqlPrices);
-      sqlPrices = parseSequelize(sqlPrices);
+      sqlPrices = logic.parseSequelize(sqlPrices);
       log(sqlPrices);
       /*
       res.render("index", {
@@ -85,14 +91,14 @@ module.exports = function (app) {
     log(`__dirname: ${__dirname}`);
     db.tbl_positions.findAll({}).then(function (sqlPositions) {
       //log(sqlPositions);
-      sqlPositions = parseSequelize(sqlPositions);
+      sqlPositions = logic.parseSequelize(sqlPositions);
       log(sqlPositions);
       /*
       res.render("index", {
         stocks: tblStocksResult
       });
       */
-      res.json(sqlPositions);
+      res.json(logic.parseSequelize(sqlPositions));
     });
   });
 
@@ -102,7 +108,7 @@ module.exports = function (app) {
     log(`__dirname: ${__dirname}`);
     db.tbl_transactions.findAll({}).then(function (sqlTransactions) {
       //log(sqlTransactions);
-      sqlTransactions = parseSequelize(sqlTransactions);
+      sqlTransactions = logic.parseSequelize(sqlTransactions);
       log(sqlTransactions);
       /*
       res.render("index", {

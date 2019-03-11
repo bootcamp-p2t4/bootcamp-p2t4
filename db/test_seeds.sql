@@ -1,9 +1,11 @@
+USE stock_novice_db;
+
 TRUNCATE TABLE tbl_users;
 
 INSERT INTO tbl_users
-  (user_name, user_password, user_email, monthly_period, created_at, updated_at)
+  (user_name, monthly_period, created_at, updated_at)
 VALUES
-  ('user', 'password', 'user@domain.com', 2, NOW(), NOW());
+  ('user_01', 2, NOW(), NOW());
 
 TRUNCATE TABLE tbl_transactions;
 
@@ -33,15 +35,15 @@ VALUES
 TRUNCATE TABLE tbl_positions;
 
 INSERT INTO tbl_positions
-  (user_name, monthly_period, ticker, shares, created_at, updated_at)
+  (user_name, monthly_period, stock, ticker, shares, created_at, updated_at)
 VALUES
-  ('user', 1, 'CASH', 69119, NOW(), NOW()),
-  ('user', 1, 'SP500', 1, NOW(), NOW()),
-  ('user', 1, 'DJI', 2, NOW(), NOW()),
-  ('user', 1, 'NASDAQ', 3, NOW(), NOW()),
-  ('user', 1, 'JPM', 4, NOW(), NOW()),
-  ('user', 1, 'BAC', 5, NOW(), NOW()),
-  ('user', 1, 'WFC', 6, NOW(), NOW()),
-  ('user', 1, 'AMZN', 7, NOW(), NOW()),
-  ('user', 1, 'APPL', 8, NOW(), NOW()),
-  ('user', 1, 'GOOGL', 9, NOW(), NOW());
+  ('user', 1, 'Cash', 'CASH', 69119, NOW(), NOW()),
+  ('user', 1, 'S&P 500', 'SP500', 1, NOW(), NOW()),
+  ('user', 1, 'Dow Jones Ind Avg', 'DJI', 2, NOW(), NOW()),
+  ('user', 1, 'Nasdaq', 'NASDAQ', 3, NOW(), NOW()),
+  ('user', 1, 'JP Morgan Chase', 'JPM', 4, NOW(), NOW()),
+  ('user', 1, 'Bank of America', 'BAC', 5, NOW(), NOW()),
+  ('user', 1, 'Wells Fargo Co', 'WFC', 6, NOW(), NOW()),
+  ('user', 1, 'Amazon', 'AMZN', 7, NOW(), NOW()),
+  ('user', 1, 'Apple', 'APPL', 8, NOW(), NOW()),
+  ('user', 1, 'Google', 'GOOGL', 9, NOW(), NOW());

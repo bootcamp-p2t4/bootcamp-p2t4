@@ -4,7 +4,7 @@
 module.exports = (sequelize, DataTypes) => {
 
   const tbl_stocks = sequelize.define("tbl_stocks", {
-    id: {
+    stock_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,

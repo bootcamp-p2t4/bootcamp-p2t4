@@ -4,7 +4,7 @@
 module.exports = (sequelize, DataTypes) => {
 
   const tbl_positions = sequelize.define("tbl_positions", {
-    id: {
+    position_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       notNull: true
     },
     monthly_period: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.INTEGER,
       notNull: true
     },
     stock: {
@@ -29,40 +29,38 @@ module.exports = (sequelize, DataTypes) => {
     shares: {
       type: DataTypes.INTEGER,
       notNull: true
+    }/*,
+    cost: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return this.getDataValue("shares") * 2;
+      }
     }
+    */
   }, {
     underscored: true,
     timestamps: true
   });
 
-  /*
-  // sequelize model table associations
+  /* sequelize model table associations
   tbl_positions.associate = function (db) {
 
     tbl_positions.belongsTo(db.tbl_users, {
-      targetKey: "monthly_period",
-      foreignKey: "monthly_period"
+      foreignKey: "user_name",
+      targetKey: "user_name"
     });
-
-    tbl_positions.belongsTo(db.tbl_users, {
-      targetKey: "monthly_period",
-      foreignKey: "monthly_period"
+  
+    tbl_positions.hasMany(db.tbl_prices, {
+      sourceKey: "ticker",
+      foreignKey: "ticker"
     });
-
-    
-//  tblStocks.hasMany(db.tblTransactions, {
-//    sourceKey: "ticker",
-//    foreignKey: "ticker"
-//  });
-    
-    
+  
 
     // add additional associations inside single tbl_name.associate block
 
   };
-  */
-
-
+  //*/
+  
   return tbl_positions;
 
 };

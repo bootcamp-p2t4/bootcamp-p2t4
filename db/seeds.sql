@@ -1,8 +1,8 @@
 USE stock_novice_db;
 
-TRUNCATE TABLE tbl_prices;
+TRUNCATE TABLE tbl_stocks;
 
-INSERT INTO tbl_prices
+INSERT INTO tbl_stocks
   (ticker, monthly_period, price_date, price)
   VALUES
     ('SP500', 1, '2008-5-1', 1386),

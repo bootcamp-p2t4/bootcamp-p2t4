@@ -10,7 +10,6 @@ const sequelize = require("./../config/connection");
 const basename = path.basename(__filename);
 
 const db = {};
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

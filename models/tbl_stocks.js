@@ -3,11 +3,15 @@
 // model.tblPrices
 module.exports = (sequelize, DataTypes) => {
 
-  const tbl_prices = sequelize.define("tbl_prices", {
-    price_id: {
+  const tbl_stocks = sequelize.define("tbl_stocks", {
+    stock_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      notNull: true
+    },
+    stock: {
+      type: DataTypes.STRING(255),
       notNull: true
     },
     ticker: {
@@ -48,6 +52,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   //*/
 
-  return tbl_prices;
+  return tbl_stocks;
 
 };

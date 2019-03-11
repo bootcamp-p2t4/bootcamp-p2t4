@@ -3,6 +3,7 @@ const log = global.console.log;
 
 const path = require("path");
 const db = require("../models"); // requiring dir defaults to index.js
+const Op = db.Sequelize.Op;
 const logic = require("./logic");
 
 module.exports = function (app) {
@@ -17,9 +18,28 @@ module.exports = function (app) {
 
   // POST /login
   app.post("/login", (req, res) => {
-    log(req.body);
+    log(JSON.stringify(req.body));
     log(`__dirname: ${__dirname}`);
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    // create user
+    const userName = logic.getRandom(100000, 999999);
+    db.tbl_users.findOrCreate({where: {
+      user_name: userName,
+      user_password: req.body.password
+    }}).then(function (sqlUser) {
+      log(logic.parseSequelize(sqlUser));
+      // respond with stocks as 0 positions
+      db.tbl_stocks.findAll({
+        where: {
+          monthly_period: 1
+        }
+      }).then(function (sqlStocks) {
+        sqlStocks = logic.parseSequelize(sqlStocks);
+        log(sqlStocks);
+        res.render("index", {
+          positions: sqlStocks
+        });
+      });
+    });
   });
 
   // POST /positions route

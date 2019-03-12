@@ -51,6 +51,9 @@ module.exports = function (app) {
       res.render("index", {
         positions: sqlStocks
       });
+
+
+      //res.json(sqlStocks);
     });
   });
 

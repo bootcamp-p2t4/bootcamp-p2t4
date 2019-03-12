@@ -32,30 +32,28 @@
   <form id="form-positions-buy" method="POST" action="/buy">
     <div class="form-row ml-5 pl-4 offset-md-1" id="stockList">
       <div class="">
-        <input type="hidden" class="form-control" id="username" name="user_name" value="{{this.user_name}}" placeholder=""
-          disabled>
+        <input type="hidden" class="form-control" id="username" name="user_name" value="{{this.user_name}}" placeholder="" readonly="readonly">
       </div>
       <div class="col-md-1">
         <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
-          placeholder="" disabled>
+          placeholder="" readonly="readonly">
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" placeholder="" disabled>
+        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" placeholder="" readonly="readonly">
       </div>
       <div class="col-md-1">
-        <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" placeholder=""
-          disabled>
+        <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" placeholder="">
       </div>
       <div class="col-md-1">
-        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" placeholder="" disabled>
+        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" placeholder="" readonly="readonly">
       </div>
       <div class="col-md-1">
         <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" placeholder=""
-          disabled>
+          readonly="readonly">
       </div>
       <div class="col-md-1">
         <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" placeholder=""
-          disabled>
+          readonly="readonly">
       </div>
       <div class="col-md-1">
         <button type="submit" class="btn btn-primary ml-3 mb-2" id="buy">Buy</button>
@@ -102,29 +100,29 @@
     <div class="form-row ml-5 pl-4" id="stockList">
       <div class="">
         <input type="hidden" class="form-control" id="username" name="user_name" value="{{this.user_name}}" placeholder=""
-          disabled>
+          readonly="readonly">
       </div>
       <div class="col-md-1">
         <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
-          placeholder="" disabled>
+          placeholder="" readonly="readonly">
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" placeholder="" disabled>
+        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" placeholder="" readonly="readonly">
       </div>
       <div class="col-md-1">
         <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" placeholder=""
-          disabled>
+          readonly="readonly">
       </div>
       <div class="col-md-1">
-        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" placeholder="" disabled>
+        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" placeholder="" readonly="readonly">
       </div>
       <div class="col-md-1">
         <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" placeholder=""
-          disabled>
+          readonly="readonly">
       </div>
       <div class="col-md-1">
         <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" placeholder=""
-          disabled>
+          readonly="readonly">
       </div>
       <div class="col-md-1">
         <button type="submit" class="btn btn-primary ml-3 mb-2" id="sell">Sell</button>

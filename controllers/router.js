@@ -18,7 +18,7 @@ module.exports = function (app) {
 
   // POST /login
   app.post("/login", (req, res) => {
-    log(JSON.parse(req.body));
+    log(req.body);
     log(`__dirname: ${__dirname}`);
     // create user
     const userPassword = logic.getRandom(100000, 999999);

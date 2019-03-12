@@ -18,13 +18,13 @@ module.exports = function (app) {
 
   // POST /login
   app.post("/login", (req, res) => {
-    log(JSON.stringify(req.body));
+    log(JSON.parse(req.body));
     log(`__dirname: ${__dirname}`);
     // create user
-    const userName = logic.getRandom(100000, 999999);
+    const userPassword = logic.getRandom(100000, 999999);
     db.tbl_users.findOrCreate({where: {
-      user_name: userName,
-      user_password: req.body.password
+      user_name: req.body.user_name,
+      user_password: userPassword
     }}).then(function (sqlUser) {
       log(logic.parseSequelize(sqlUser));
       // respond with stocks as 0 positions

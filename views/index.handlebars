@@ -1,243 +1,235 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h2 class="display-4 text-center">Stock Novice</h2>
-    <p class="lead text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, nulla?</p>
+{{!-- Column Names for Buy Table --}}
+<h2 class="text-center">Stocks and Indexes</h2>
+<div class="container stock-lists" id="border">
+  <h4 class="text-center buy-sell-title">Buy Stocks</h4>
+  <div class="row ml-5 pl-4 offset-md-1">
+    <div class="col-md-1">
+      <h6 class="text-center">Period</h6>
+    </div>
+    <div class="col-md-2">
+      <h6 class="text-center">Stock</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Ticker</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Price</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Shares</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Valuation</h6>
+    </div>
+    <div class="col-md-1 offset-md-1 pl-2">
+      <h6 class="text-center">Buy</h6>
+    </div>
+
   </div>
+
+  {{!-- Buy Table Form --}}
+  {{#each positions}}
+  <form id="form-positions-buy" method="POST" action="/buy">
+    <div class="form-row ml-5 pl-4 offset-md-1" id="stockList">
+      <div class="">
+        <input type="hidden" class="form-control" id="username" name="user_name" value="{{this.user_name}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
+          placeholder="" disabled>
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" placeholder="" disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" placeholder="" disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-primary ml-3 mb-2" id="buy">Buy</button>
+      </div>
+      <div class="col-md-1">
+        <input type="number" class="form-control" id="buy_shares" name="buy_shares" value="" placeholder="shares">
+      </div>
+    </div>
+  </form>
+  {{/each}}
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati tempora deserunt omnis sint ab quam,
-        vero perspiciatis, voluptatum maxime quibusdam quos placeat blanditiis ea magni nemo et illo voluptatem
-        officia. Vero adipisci dolorem veniam autem dolores velit fuga perferendis dolorum, cupiditate neque quia,
-        tempora earum magni nemo animi, architecto a?</p>
+{{!-- Column Names for Sell Table --}}
+<div class="container" id="border">
+  <h4 class="text-center buy-sell-title">Sell Stocks</h4>
+  <div class="row ml-5 pl-4">
+    <div class="col-md-1">
+      <h6 class="text-center">Period</h6>
     </div>
+    <div class="col-md-2">
+      <h6 class="text-center">Stock</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Ticker</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Price</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Shares</h6>
+    </div>
+    <div class="col-md-1">
+      <h6 class="text-center">Valuation</h6>
+    </div>
+    <div class="col-md-1 offset-md-1 pl-2">
+      <h6 class="text-center">Sell</h6>
+    </div>
+
   </div>
+
+  {{!-- Sell Table Form --}}
+  {{#each positions}}
+  <form id="form-positions-sell" method="POST" action="/sell">
+    <div class="form-row ml-5 pl-4" id="stockList">
+      <div class="">
+        <input type="hidden" class="form-control" id="username" name="user_name" value="{{this.user_name}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
+          placeholder="" disabled>
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" placeholder="" disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" placeholder="" disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" placeholder=""
+          disabled>
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-primary ml-3 mb-2" id="sell">Sell</button>
+      </div>
+      <div class="col-md-1">
+        <input type="number" class="form-control" id="sell_shares" name="sell_shares" value="" placeholder="shares">
+      </div>
+    </div>
+  </form>
+  {{/each}}
+
+  {{!--
+  <div>
+    {{#each positions}}
+    <h1>{{this.monthly_period}}</h1>
+    {{/each}}
+  </div>
+  --}}
+
 </div>
 
 <br>
 
-{{!-- Column Names for Stock Buy/Sell Table --}}
-<div class="container" id="border">
-    <h2 class="text-center">Stocks and Indexes</h2>
-    <br>
-    <div class="container">
-      <div class="row">
-      {{!-- <div class="col-md-1">
-      </div> --}}
-      <div class="col-md-2">
-        <h5 class="text-center">Stock</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Ticker</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Price</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Shares</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Shares to Buy</h5>
-      </div>
-    </div>
-
-    {{#each positions}}
-    <form id="form-positions-buy" method="POST" action="/buy">
-      <div class="form-row" id="stockList">
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="price" placeholder="price" value="this.price" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="price" placeholder="shares" value="this.shares" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="input" class="form-control" id="buy_shares" placeholder="100" value="">
-        </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-primary ml-5 mb-2" id="buy">Buy</button>
-        </div>
-        </div>
-      </form>
-    {{/each}}
-</div>
-
-
-    </div>
-    
-
-<div class="container" id="border">
-<div class="row">
-      {{!-- <div class="col-md-1">
-      </div> --}}
-      <div class="col-md-2">
-        <h5 class="text-center">Stock</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Ticker</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Price</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Shares</h5>
-      </div>
-      <div class="col-md-2">
-        <h5 class="text-center">Shares to Sell</h5>
-      </div>
-    </div>
-
-    {{#each positions}}
-    <form id="form-positions-sell" method="POST" action="/sell">
-      <div class="form-row" id="stockList">
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="stock" placeholder="stock" value="{{this.stock}}" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="ticker" placeholder="ticker" value="{{this.ticker}}" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="price" placeholder="price" value="this.price" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="price" placeholder="shares" value="this.shares" disabled>
-        </div>
-        <div class="col-md-2">
-          <input type="input" class="form-control" id="buy_shares" placeholder="100" value="">
-        </div>
-      <div class="col-md-2">
-          <button type="submit" class="btn btn-primary ml-5 mb-2" id="buy">Sell</button>
-      </div>
-      </div>
-      </form>
-    {{/each}}
-</div>
-    <br>
-
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-        <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
-          <button type="submit" class="btn btn-primary" id="btn-next_monthly-period">Next Period</button>
-        </form>
+      <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
+        <button type="submit" class="btn btn-primary text-center" id="btn-next_monthly-period">Next Period</button>
+      </form>
     </div>
   </div>
 </div>
-  
 
-
+<h2 class="text-center">Time Series Performance</h2>
 <div class="container" id="border">
-    <h2 class="text-center">Current Positions</h2>
-    <br>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-center">Period 1 Position</h5>
-            <h6 class="card-subtitle mb-2">Stocks:</h6>
-            <h6 class="card-subtitle mb-2">Cash: </h6>
-            <h6 class="card-subtitle mb-2">Total Value: </h6>
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" style="width: 70rem;">
+        <div class="card-body">
+          <div class="container">
+            <h4 class="text-center">Period {{this.monthly_period}}</h4>
+            <br>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center" id="positionStock">Stock</th>
+                  <th scope="col" class="text-center" id="positionTicker">Ticker</th>
+                  <th scope="col" class="text-center" id="positionShares">Shares</th>
+                  <th scope="col" class="text-center" id="positionValue">Total Value</th>
+                  <th scope="col" class="text-center" id="positionCash">Cash</th>
+                  <th scope="col" class="text-center" id="positionPortfolioAmount">Portfolio Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="positionStockData"></td>
+                  <td id="positionTickerData"></td>
+                  <td id="positionSharesData"></td>
+                  <td id="positionTotalValueData"></td>
+                  <td id="positionCashData"></td>
+                  <td id="positionPortfolioAmountData"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <br>
-  <br>
+<br>
+<br>
 
-  <div class="container" id="border">
-    <h2 class="text-center">Transaction History</h2>
-    <br>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col" class="text-center">Period #</th>
-          <th scope="col" class="text-center">Stock</th>
-          <th scope="col" class="text-center">Ticker</th>
-          <th scope="col" class="text-center">Buy</th>
-          <th scope="col" class="text-center">Sell</th>
-          <th scope="col" class="text-center">Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row" id="monthly_period"></th>
-          <td id="stock"></td>
-          <td id="ticker"></td>
-          <td id="stockBuy"></td>
-          <td id="stockSell"></td>
-          <td id="totalAmount"></td>
-        </tr>
-      </tbody>
-    </table>
+{{!-- <h2 class="text-center">Transaction History</h2>
+<div class="container" id="border">
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">Period #</th>
+        <th scope="col" class="text-center">Stock</th>
+        <th scope="col" class="text-center">Ticker</th>
+        <th scope="col" class="text-center">Buy</th>
+        <th scope="col" class="text-center">Sell</th>
+        <th scope="col" class="text-center">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="transactionPeriodData"></td>
+        <td id="transactionStockData"></td>
+        <td id="transactionTickerData"></td>
+        <td id="transactionBuyData"></td>
+        <td id="transactionSellData"></td>
+        <td id="transactionAmountData"></td>
+      </tr>
+    </tbody>
+  </table>
+</div> --}}
+
+<h2 class="text-center">Portfolio Chart</h2>
+<div class="container" id="border">
+  <div id="chart-area">
+
   </div>
-
-  <br>
-  <br>
-
-  <div class="container" id="border">
-    <h2 class="text-center">Portfolio Chart</h2>
-    <div id="chart-area">
-
-    </div>
-  </div>
-
-
-
-
-
-
-{{!-- <section class="row">
-  <div class="col-12 col-md-4">
-    <h2 class="text-center">Burgers ready to eat!</h2>
-    <ul>
-      {{#each burgers}}
-      {{#unless this.devoured}}
-      <li>
-        <h6 class="text-center">{{this.id}}. {{this.burger_name}}</h6>
-        <form action="/put" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <input type="hidden" name="id" value="{{this.id}}">
-          <button class="btn btn-primary mx-auto d-block" type="submit">Devour!</button>
-        </form>
-        </p>
-      </li>
-      {{/unless}}
-      {{/each}}
-    </ul>
-  </div><!-- end row 2 col 1 -->
-  <div class="col-12 col-md-4">
-    <h2 class="text-center">Add A Burger!</h2>
-    <form class="create-update-form" action="/" method="POST">
-      <div class="form-group">
-        <p class="text-center">Enter a burger name and click Submit to order</p>
-        <input class="mx-auto d-block" type="text" id="burger_name" name="burger_name">
-      </div>
-      <button class="btn btn-primary mx-auto d-block" type="submit">Submit</button>
-    </form>
-  </div><!-- end row 2 col 2 -->
-  <div class="col-12 col-md-4">
-    <h2 class="text-center">Burgers devoured!</h2>
-    <ul>
-      {{#each burgers}}
-      {{#if this.devoured}}
-      <li>
-        <h6 class="text-center">{{this.id}}. {{this.burger_name}}</h6>
-        <form action="/delete" method="POST">
-          <input type="hidden" name="id" value="{{this.id}}">
-          <button class="btn btn-primary mx-auto d-block" type="submit">Vomit!</button>
-        </form>
-      </li>
-      {{/if}}
-      {{/each}}
-    </ul>
-  </div><!-- end row 2 col 3 -->
-</section><!-- end row 2 --> --}}
+</div>

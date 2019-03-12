@@ -4,7 +4,7 @@
 module.exports = (sequelize, DataTypes) => {
 
   const tbl_transactions = sequelize.define("tbl_transactions", {
-    id: {
+    trx_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       notNull: true
     },
+    stock: {
+      type: DataTypes.STRING(255),
+      notNull: true
+    },
     ticker: {
       type: DataTypes.STRING(255),
       notNull: true
@@ -35,23 +39,24 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
-  /*
-  tblUsers.associate = function (db) {
+  /* sequelize model table associations
+  tbl_transactions.associate = function (db) {
 
-    tblUsers.belongsTo(db.tblTransactions, {
-      foreignKey: "ticker",
-      targetKey: "ticker"
+    tbl_transactions.belongsTo(db.tbl_users, {
+      foreignKey: "user_name",
+      targetKey: "user_name"
+    });
+    
+    tbl_transactions.hasMany(db.tbl_prices, {
+      sourceKey: "ticker",
+      foreignKey: "ticker"
     });
 
-    tblStocks.hasMany(db.tblTransactions, {
-      foreignKey: "ticker",
-      sourceKey: "ticker"
-    });
-
-    // add another association inside single tblUsers.associate block
+    // add additional associations inside single tbl_name.associate block
 
   };
-  */
+  //*/
+
 
   return tbl_transactions;
 

@@ -6,16 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Stock Novice</title>
+  <link rel="stylesheet" href="./assets/css/rest.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="../public/assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
 
   <h1>index.html</h1>
 
-
+  <form id="frm-login" action="/login" method="POST">
+    <div class="form-row" id="user-info">
+      <div class="col-md-2">
+        <label>DataTypes.UUIDV4</label>
+        <input class="form-control" id="uuid" name="uuid" type="text" value="{{this.UUID}}" disabled>
+      </div>
+      <div class="col-md-2">
+        <label>user_name</label>
+        <input class="form-control" id="user_name" name="user_name" type="input" placeholder="user_name" value="">
+      </div>
+      <div class="col-md-2">
+        <label>password</label>
+        <input class="form-control" id="user_password" name="user_password" type="text" value="Password123">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary ml-5 mb-2" id="btn-login" name="login" type="submit">login</button>
+      </div>
+    </div>
+  </form>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

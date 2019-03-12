@@ -30,6 +30,6 @@ const PORT = process.env.PORT || process.env.EXPRESS_PORT || 8080;
 db.sequelize.sync().then(function () {
   // express listener
   app.listen(PORT, function () {
-    log(`express app listening on PORT ${PORT}`);
+    log(`\nexpress app listening on PORT ${PORT}`);
   });
 });

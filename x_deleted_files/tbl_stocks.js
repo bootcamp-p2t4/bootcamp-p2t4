@@ -1,6 +1,6 @@
 "use strict";
 
-// model.tblPrices
+// model.tblStocks
 module.exports = (sequelize, DataTypes) => {
 
   const tbl_stocks = sequelize.define("tbl_stocks", {
@@ -16,42 +16,31 @@ module.exports = (sequelize, DataTypes) => {
     },
     ticker: {
       type: DataTypes.STRING(255),
-      notNull: true
-    },
-    monthly_period: {
-      type: DataTypes.INTEGER,
-      notNull: true
-    },
-    price_date: {
-      type: DataTypes.DATE,
-      notNull: true
-    },
-    price: {
-      type: DataTypes.INTEGER,
+      unique: true,
       notNull: true
     }
   }, {
     timestamps: false
   });
 
-  /* sequelize model table associations
-  tbl_prices.associate = function (db) {
+  /*
+  tblUsers.associate = function (db) {
 
-    tbl_prices.belongsTo(db.tbl_positions, {
+    tblUsers.belongsTo(db.tblTransactions, {
       foreignKey: "ticker",
       targetKey: "ticker"
     });
 
-    tbl_prices.belongsTo(db.tbl_transactions, {
+    tblStocks.hasMany(db.tblTransactions, {
       foreignKey: "ticker",
-      targetKey: "ticker"
+      sourceKey: "ticker"
     });
 
-    // add additional associations inside single tbl_name.associate block
+    // add another association inside single tblUsers.associate block
 
   };
-  //*/
-
+  */
+ 
   return tbl_stocks;
 
 };

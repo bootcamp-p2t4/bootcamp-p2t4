@@ -3,31 +3,56 @@ const log = global.console.log;
 
 const path = require("path");
 const db = require("../models"); // requiring dir defaults to index.js
-
-const parseSequelize = (sqlResults) => {
-  const queryData = [];
-  sqlResults.forEach(element => {
-    queryData.push(element.dataValues);
-  });
-  return queryData;
-};
+const Op = db.Sequelize.Op;
+const logic = require("./logic");
 
 module.exports = function (app) {
 
-  // GET / route
+  // METHOD route
+
+  // GET /
   app.get("/", (req, res) => {
     log(req.url);
-    log(`__dirname: ${__dirname}`);
     res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
+
+  // POST /login
+  app.post("/login", (req, res) => {
+    log(req.body);
+    log(`__dirname: ${__dirname}`);
+    // create user
+    const userPassword = logic.getRandom(100000, 999999);
+    db.tbl_users.findOrCreate({
+      where: {
+        user_name: req.body.user_name,
+        user_password: userPassword
+      }
+    }).then(function (sqlUser) {
+      log(logic.parseSequelize(sqlUser));
+      // respond with stocks as 0 positions
+      db.tbl_stocks.findAll({
+        where: {
+          monthly_period: 1
+        }
+      }).then(function (sqlStocks) {
+        sqlStocks = logic.parseSequelize(sqlStocks);
+        log(sqlStocks);
+        res.render("index", {
+          positions: sqlStocks
+        });
+      });
+    });
   });
 
   // GET /positions route
   app.get("/positions", function (req, res) {
     log(req.url);
-    log(`__dirname: ${__dirname}`);
-    db.tbl_stocks.findAll({}).then(function (sqlStocks) {
-      //log(sqlStocks);
-      sqlStocks = parseSequelize(sqlStocks);
+    db.tbl_stocks.findAll({
+      where: {
+        monthly_period: 1
+      }
+    }).then(function (sqlStocks) {
+      sqlStocks = logic.parseSequelize(sqlStocks);
       log(sqlStocks);
       res.render("index", {
         positions: sqlStocks
@@ -36,54 +61,53 @@ module.exports = function (app) {
     });
   });
 
-  // GET /stocks route
-  app.get("/stocks", function (req, res) {
-    log(req.url);
-    log(`__dirname: ${__dirname}`);
+  // POST /positions route
+  app.post("/positions", function (req, res) {
+    log(req.body);
     db.tbl_stocks.findAll({}).then(function (sqlStocks) {
-      //log(sqlStocks);
-      sqlStocks = parseSequelize(sqlStocks);
+      sqlStocks = logic.parseSequelize(sqlStocks);
       log(sqlStocks);
-      /*
       res.render("index", {
-        stocks: sqlStocks
+        positions: sqlStocks
       });
-      */
-      res.json(sqlStocks);
+      //res.json(sqlStocks);
     });
   });
 
-  // GET /prices route
-  app.get("/prices", function (req, res) {
-    log(req.url);
-    log(`__dirname: ${__dirname}`);
-    db.tbl_prices.findAll({}).then(function (sqlPrices) {
-      //log(sqlPrices);
-      sqlPrices = parseSequelize(sqlPrices);
-      log(sqlPrices);
-      /*
-      res.render("index", {
-        stocks: tblStocksResult
-      });
-      */
-      res.json(sqlPrices);
-    });
-  });
-
-  // GET /positions route
-  app.get("/positions", function (req, res) {
+  // GET /test
+  app.get("/test", (req, res) => {
     log(req.url);
     log(`__dirname: ${__dirname}`);
     db.tbl_positions.findAll({}).then(function (sqlPositions) {
-      //log(sqlPositions);
-      sqlPositions = parseSequelize(sqlPositions);
+      log(sqlPositions);
+      sqlPositions = logic.parseSequelize(sqlPositions);
       log(sqlPositions);
       /*
       res.render("index", {
-        stocks: tblStocksResult
+        positions: sqlPositions
       });
       */
       res.json(sqlPositions);
+    });
+  });
+
+  // GET /stocks route via SELECT DISTINCT stock, ticker FROM transactions
+  app.get("/stocks", function (req, res) {
+    log(req.url);
+    log(`__dirname: ${__dirname}`);
+    db.tbl_stocks.findAll({
+      where: {
+        monthly_period: 1
+      }
+    }).then(function (sqlStocks) {
+      sqlStocks = logic.parseSequelize(sqlStocks);
+      log(sqlStocks);
+      /*
+      res.render("index", {
+        positions: sqlStocks
+      });
+      */
+      res.json(sqlStocks);
     });
   });
 
@@ -93,7 +117,7 @@ module.exports = function (app) {
     log(`__dirname: ${__dirname}`);
     db.tbl_transactions.findAll({}).then(function (sqlTransactions) {
       //log(sqlTransactions);
-      sqlTransactions = parseSequelize(sqlTransactions);
+      sqlTransactions = logic.parseSequelize(sqlTransactions);
       log(sqlTransactions);
       /*
       res.render("index", {
@@ -108,21 +132,21 @@ module.exports = function (app) {
   app.post("/buy", function (req, res) {
     log(req.body);
     log(`__dirname: ${__dirname}`);
-
+    res.redirect("/positions");
   });
 
   // POST /sell route
   app.post("/sell", function (req, res) {
     log(req.body);
     log(`__dirname: ${__dirname}`);
-
+    res.redirect("/positions");
   });
 
   // POST /next route
   app.post("/next", function (req, res) {
     log(req.body);
     log(`__dirname: ${__dirname}`);
-
+    //res.redirect("/positions");
   });
 
   /*
@@ -175,6 +199,6 @@ module.exports = function (app) {
     });
   });
 
-*/
+  */
 
 };

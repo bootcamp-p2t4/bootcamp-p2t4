@@ -2,51 +2,89 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- reset.css -->
-    <link rel="stylesheet" href="/assets/css/reset.css" type="text/css" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <!-- local css -->
-    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
-    <!-- page title -->
-    <title>Stock Novice</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- reset.css -->
+  <link rel="stylesheet" href="/assets/css/reset.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <!-- local css -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+  <!-- page title -->
+  <title>Stock Novice</title>
 </head>
 
-<body>
-    <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h2 class="display-4 text-center">Stock Novice</h2>
-    <p class="lead text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, nulla?</p>
-  </div>
-</div>
+<body id="page-top">
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati tempora deserunt omnis sint ab quam,
-        vero perspiciatis, voluptatum maxime quibusdam quos placeat blanditiis ea magni nemo et illo voluptatem
-        officia. Vero adipisci dolorem veniam autem dolores velit fuga perferendis dolorum, cupiditate neque quia,
-        tempora earum magni nemo animi, architecto a?</p>
+  <!-- Navigation (START) -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger white-text" href="#page-top">Stock Novice</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#stock-section">Stocks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#transactions-section">Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#chart-section">Chart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/index.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation (END) -->
+
+  <!-- JUMBOTRON (START) -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h2 class="display-4 text-center">Stock Novice</h2>
     </div>
   </div>
-</div>
+  <!-- JUMBOTRON (END) -->
 
-<br>
-<br>
-    
-    {{{ body }}}
+  <!-- INTRODUCTION (START) -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <p class="text-center">Welcome to Stock Novice!! This page is designed to simulate basic stock transactions over a period of time. You are given $100K and a few of ‘stock’ options to choose from. This options include both individual stocks and buckets of stocks like the Dow Jones. You will be able to buy and sell those ‘stocks” within a period of time. Once your done with your stock transactions and ready to move to the next trading period press the ‘Next Period’ then execute your trades for that period. The full simulation is 12 periods long. After you complete all 12 periods you will be able to see a visualization of your stock portfolio by pressing the ‘Create Chart” button.</p>
+      </div>
+    </div>
+  </div>
+  <!-- INTRODUCTION (END) -->
+
+  {{{ body }}}
+
+  <!-- Footer (START) -->
+  <footer class="page-footer font-small bg-secondary">
+    <div class="footer-copyright text-center py-3">Copyright © 2019:
+      <a href="#page-top" id="footer-project-name"> Stock Novice, LLC</a>
+    </div>
+  </footer>
+  <!-- Footer (END) -->
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="/assets/js/index.js"></script>
-    <script src="/assets/js/app.js"></script>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="/assets/js/scroll.js"></script>
+  <script src="/assets/js/script.js"></script>
 
 </body>
-
 </html>

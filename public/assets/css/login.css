@@ -4,8 +4,41 @@
 }
 
 body {
-  background: #e9ecef;
+  /* background: #e9ecef; */
   /* background: linear-gradient(to right, #0062E6, #33AEFF); */
+  margin: 0;
+  padding: 0;
+}
+
+.jumbotron {
+  background-image: url("../images/background1.jpg");
+  background-size: cover;
+  background-position: center top;
+  margin: 0;
+}
+
+.navbar-nav, .nav-link {
+  color: white;
+}
+
+.navbar-brand {
+  height: 40px;
+}
+
+a.nav-item {
+  padding-left: .75rem;
+  padding-right: .75rem;
+}
+
+#mainNav {
+  background: #007bff;
+}
+
+.display-4 {
+  color: white;
+  font-family: 'Righteous', cursive;
+  font-size: 95px;
+  letter-spacing: 4px;
 }
 
 .card-signin {
@@ -22,18 +55,20 @@ body {
 
 .card-signin .card-body {
   padding: 0.75rem 1.5rem 1rem 1.5rem;
+  background: #e9ecef;
+  border-radius: 1rem;
 }
 
-.jumbotron {
+/* .jumbotron {
     margin-bottom: 0;
-}
+} */
 
 #btn-SignIn {
     
 }
 
 .card-body {
-    padding: 0;
+  padding: 0;
 }
 
 .form-signin {

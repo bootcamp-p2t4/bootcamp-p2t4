@@ -14,7 +14,7 @@ $(document).ready(function () {
 
       // Using jQuery's animate() method to add smooth page scroll
       $("html, body").animate({
-        scrollTop: $(hash).offset().top - $("#mainNav").height() - 10
+        scrollTop: $(hash).offset().top - $("#mainNav").height() - 20
       }, 1000, function () {
 
         // Add hash (#) to URL when done scrolling (default click behavior)

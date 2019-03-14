@@ -2,28 +2,27 @@
 <section id="stock-section">
   <h2 class="text-center">Stocks and Indexes</h2>
   <div class="container stock-lists" id="border">
-    <h4 class="text-center buy-sell-title">Buy</h4>
-    <div class="row ml-5 pl-4 offset-md-2">
-      <div class="col-md-1 offset-md-1">
-        <h6 class="text-center">Period</h6>
+    <div class="row ml-4 mt-3 stock-header-column">
+      <div class="col-sm-9 col-md-1 col-lg-1 offset-1">
+        <h6 class="text-center period-header">Period</h6>
       </div>
-      <div class="col-md-2">
-        <h6 class="text-center">Stock</h6>
+      <div class="col-sm-9 col-md-2 col-lg-2">
+        <h6 class="text-center stock-header">Stock</h6>
       </div>
-      <div class="col-md-1 pl-1">
-        <h6 class="text-center">Ticker</h6>
+      <div class="col-sm-9 col-md-1 col-lg-1 pl-1">
+        <h6 class="text-center ticker-header">Ticker</h6>
       </div>
-      <div class="col-md-1">
-        <h6 class="text-center">Price</h6>
+      <div class="col-sm-9 col-md-1 col-lg-1">
+        <h6 class="text-center price-header">Price</h6>
       </div>
-      <div class="col-md-1 pl-1">
-        <h6 class="text-center">Shares</h6>
+      <div class="col-sm-9 col-md-1 col-lg-1 pl-1">
+        <h6 class="text-center shares-header">Shares</h6>
       </div>
-      <div class="col-md-1 pl-1">
-        <h6 class="text-center">Valuation</h6>
+      <div class="col-sm-9 col-md-1 col-lg-1 pl-1">
+        <h6 class="text-center valuation-header">Valuation</h6>
       </div>
-      <div class="col-md-1 offset-md-1 pl-1">
-        <h6 class="text-center">Buy</h6>
+      <div class="col-sm-9 col-md-1 col-lg-1 offset-md-1 mr-1 pl-1">
+        <h6 class="text-center buy-sell-header">Buy/Sell</h6>
       </div>
     </div>
     {{!-- Buy Table Column Names (END) --}}
@@ -31,126 +30,129 @@
     {{!-- Buy Table Form (START) --}}
     {{#each positions}}
     <form id="form-positions-buy" method="POST" action="/buy">
-      <div class="form-row ml-5 pl-4 offset-md-1" id="stockList">
-
-        <div class="col-md-1 offset-md-1">
+      <div class="form-row ml-4" id="stockList">
+        <div class="col-sm-9 col-md-1 offset-md-1">
           <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
             readonly="readonly">
         </div>
-        <div class="col-md-2">
+        <div class="col-sm-9 col-md-2">
           <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" readonly="readonly">
         </div>
-        <div class="col-md-1">
+        <div class="col-sm-9 col-md-1">
           <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" readonly="readonly">
         </div>
-        <div class="col-md-1">
+        <div class="col-sm-9 col-md-1">
           <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" readonly="readonly">
         </div>
-        <div class="col-md-1">
+        <div class="col-sm-9 col-md-1">
           <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" readonly="readonly">
         </div>
-        <div class="col-md-1">
+        <div class="col-sm-9 col-md-1">
           <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" readonly="readonly">
         </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-success ml-3 mb-2" id="buy">Buy</button>
+        <div class="col-sm-9 col-md-1">
+          <button type="submit" class="btn btn-success ml-3 mb-2" id="buy" name="buy_sell" value="buy">Buy</button>
         </div>
-        <div class="col-md-1">
+        <div class="col-sm-9 col-md-1">
           <input type="number" class="form-control" id="buy_shares" name="buy_shares" placeholder="# shares">
         </div>
-        <div class="col-md-1">
-          <input type="text" class="form-control" id="username" name="user_name" value="{{this.user_name}}" readonly="readonly">
+        <div class="col-sm-9 col-md-1">
+          <button type="submit" class="btn btn-danger ml-3 mb-2" id="sell" name="buy_sell" value="sell">Sell</button>
+        </div>
+        <div class="col-sm-9 col-md-1">
+          <input type="hidden" class="form-control" id="username" name="user_name" value="{{this.user_name}}" readonly="readonly">
         </div>
       </div>
     </form>
     {{/each}}
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-12 col-md-6">
           <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
-            <button type="submit" class="btn btn-success text-center" id="btn-next_monthly-period">Next Period</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{!-- Buy Table Form (END) --}}
-
-  {{!-- Sell Table Column Names (START) --}}
-  <div class="container" id="border">
-    <h4 class="text-center buy-sell-title">Sell</h4>
-    <div class="row ml-5 pl-4 offset-md-2">
-      <div class="col-md-1 offset-md-1">
-        <h6 class="text-center">Period</h6>
-      </div>
-      <div class="col-md-2">
-        <h6 class="text-center">Stock</h6>
-      </div>
-      <div class="col-md-1 pl-1">
-        <h6 class="text-center">Ticker</h6>
-      </div>
-      <div class="col-md-1 pl-1">
-        <h6 class="text-center">Price</h6>
-      </div>
-      <div class="col-md-1 pl-1">
-        <h6 class="text-center">Shares</h6>
-      </div>
-      <div class="col-md-1 pl-1">
-        <h6 class="text-center">Valuation</h6>
-      </div>
-      <div class="col-md-1 offset-md-1 pl-1">
-        <h6 class="text-center">Sell</h6>
-      </div>
-    </div>
-    {{!-- Sell Table Column Names (END) --}}
-
-    {{!-- Sell Table Form (START) --}}
-    {{#each positions}}
-    <form id="form-positions-sell" method="POST" action="/sell">
-      <div class="form-row ml-5 pl-4" id="stockList">
-
-        <div class="col-md-1 offset-md-1">
-          <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
-            placeholder="" readonly="readonly">
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" readonly="readonly">
-        </div>
-        <div class="col-md-1">
-          <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" readonly="readonly">
-        </div>
-        <div class="col-md-1">
-          <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" readonly="readonly">
-        </div>
-        <div class="col-md-1">
-          <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" readonly="readonly">
-        </div>
-        <div class="col-md-1">
-          <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" readonly="readonly">
-        </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-success ml-3 mb-2" id="sell">Sell</button>
-        </div>
-        <div class="col-md-1">
-          <input type="number" class="form-control" id="sell_shares" name="sell_shares" placeholder="# shares">
-        </div>
-        <div class="col-md-1">
-          <input type="text" class="form-control" id="username" name="user_name" value="{{this.user_name}}" readonly="readonly">
-        </div>
-      </div>
-    </form>
-    {{/each}}
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
-            <button type="submit" class="btn btn-success text-center" id="btn-next_monthly-period">Next Period</button>
+            <button type="submit" class="btn btn-primary text-center" id="btn-next_monthly-period">Next Period</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
+{{!-- Buy Table Form (END) --}}
+
+{{!-- Sell Table Column Names (START) --}}
+{{!-- <div class="container" id="border">
+  <h4 class="text-center buy-sell-title">Sell</h4>
+  <div class="row ml-5 pl-4 offset-md-2">
+    <div class="col-md-1 offset-md-1">
+      <h6 class="text-center">Period</h6>
+    </div>
+    <div class="col-md-2">
+      <h6 class="text-center">Stock</h6>
+    </div>
+    <div class="col-md-1 pl-1">
+      <h6 class="text-center">Ticker</h6>
+    </div>
+    <div class="col-md-1 pl-1">
+      <h6 class="text-center">Price</h6>
+    </div>
+    <div class="col-md-1 pl-1">
+      <h6 class="text-center">Shares</h6>
+    </div>
+    <div class="col-md-1 pl-1">
+      <h6 class="text-center">Valuation</h6>
+    </div>
+    <div class="col-md-1 offset-md-1 pl-1">
+      <h6 class="text-center">Sell</h6>
+    </div>
+  </div> --}}
+  {{!-- Sell Table Column Names (END) --}}
+
+  {{!-- Sell Table Form (START) --}}
+  {{!-- {{#each positions}}
+  <form id="form-positions-sell" method="POST" action="/sell">
+    <div class="form-row ml-5 pl-4" id="stockList">
+
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
+          placeholder="" readonly="readonly">
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" readonly="readonly">
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" readonly="readonly">
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" readonly="readonly">
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" readonly="readonly">
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" readonly="readonly">
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-success ml-3 mb-2" id="sell">Sell</button>
+      </div>
+      <div class="col-md-1">
+        <input type="number" class="form-control" id="sell_shares" name="sell_shares" placeholder="# shares">
+      </div>
+      <div class="col-md-1">
+        <input type="text" class="form-control" id="username" name="user_name" value="{{this.user_name}}" readonly="readonly">
+      </div>
+    </div>
+  </form>
+  {{/each}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
+          <button type="submit" class="btn btn-success text-center" id="btn-next_monthly-period">Next Period</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section> --}}
 {{!-- Sell Table Form (END) --}}
 
 {{!-- Transactions History (START) --}}
@@ -170,11 +172,13 @@
       <tbody>
         {{#each transactions}}
         <tr>
-          <td id="transactionPeriodData">{{this.period}}</td>
-          <td id="transactionStockData">{{this.stock}}</td>
-          <td id="transactionTickerData">{{this.ticker}}</td>
-          <td id="transactionBuyData">{{this.buy_sell}}</td>
-          <td id="transactionAmountData">{{this.amount}}</td>
+          <td id="trx_monthly_period">{{this.monthly_period}}</td>
+          <td id="trx_buy_sell">{{this.buy_sell}}</td>
+          <td id="trx_stock">{{this.stock}}</td>
+          <td id="trx_ticker">{{this.ticker}}</td>
+          <td id="trx_price">{{this.price}}</td>
+          <td id="trx_shares">{{this.shares}}</td>
+          <td id="trx_value">{{this.value}}</td>
         </tr>
         {{/each}}
       </tbody>
@@ -197,13 +201,13 @@
   <h2 class="text-center">Portfolio Chart</h2>
   <div class="container" id="border">
     <div id="chart-area">
-
+      <svg width="960" height="430"></svg>
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <form id="frm-create_chart" method="POST" action="/create_chart">
-            <button type="submit" class="btn btn-success text-center" id="btn-create_chart">Create Chart</button>
+        <div class="col-sm-12 col-md-6">
+          {{!-- <form id="frm-create_chart" method="POST" action="/create_chart"> --}}
+            <button type="submit" class="btn btn-primary text-center" id="btn-create_chart">Create Chart</button>
           </form>
         </div>
       </div>

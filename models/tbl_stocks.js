@@ -35,17 +35,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   /* sequelize model table associations
-  tbl_prices.associate = function (db) {
-
-    tbl_prices.belongsTo(db.tbl_positions, {
-      foreignKey: "ticker",
-      targetKey: "ticker"
-    });
-
-    tbl_prices.belongsTo(db.tbl_transactions, {
-      foreignKey: "ticker",
-      targetKey: "ticker"
-    });
+  tbl_stocks.associate = function (db) {
 
     // add additional associations inside single tbl_name.associate block
 

@@ -39,17 +39,12 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
-  /* sequelize model table associations
+  // sequelize model table associations
   tbl_transactions.associate = function (db) {
 
     tbl_transactions.belongsTo(db.tbl_users, {
       foreignKey: "user_name",
       targetKey: "user_name"
-    });
-    
-    tbl_transactions.hasMany(db.tbl_prices, {
-      sourceKey: "ticker",
-      foreignKey: "ticker"
     });
 
     // add additional associations inside single tbl_name.associate block

@@ -1,6 +1,8 @@
 USE stock_novice_db;
 
+/*
 TRUNCATE TABLE tbl_users;
+*/
 
 INSERT INTO tbl_users
   (user_name, monthly_period, created_at, updated_at)

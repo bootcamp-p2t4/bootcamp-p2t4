@@ -10,10 +10,14 @@ module.exports = {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
 
-  parseSequelize: (sqlResults, key="", val="") => {
+  parseSequelize: (sqlResults, key = [""], val = [0]) => {
     const queryData = [];
     sqlResults.forEach(element => {
-      if (key.length > 0) element.dataValues[key] = val;
+      if (key[0].length > 0) {
+        key.forEach((value, index) => {
+          element.dataValues[value] = val[index];
+        });
+      }
       queryData.push(element.dataValues);
     });
     return queryData;

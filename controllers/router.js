@@ -44,15 +44,15 @@ module.exports = function (app) {
     });
   });
 
-  // GET /positions route
-  app.get("/positions", function (req, res) {
+  // GET /stocks route
+  app.get("/stocks", function (req, res) {
     log(req.url);
     db.tbl_stocks.findAll({
       where: {
         monthly_period: 1
       }
     }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks);
+      sqlStocks = logic.parseSequelize(sqlStocks, ["shares", "valuation"], [0,0]);
       log(sqlStocks);
       res.render("index", {
         positions: sqlStocks

@@ -3,16 +3,34 @@ body {
     padding: 0;
 }
 
+.jumbotron {
+    background-image: url("../images/background1.jpg");
+    background-size: cover;
+    background-position: center top;
+}
+
+.display-4 {
+    color: white;
+    font-family: 'Righteous', cursive;
+    font-size: 95px;
+    letter-spacing: 4px;
+}
+
 #border {
-    border-color: black;
+    border-color: #007bff;
     border-style: solid;
-    border-width: 0.1px;
+    border-width: 1px;
     padding: 6px 0 6px 0;
-    /* border-radius: .25rem; */
+    border-radius: 1rem;
+}
+
+h2 {
+    margin: 3% 0% 1% 0%
 }
 
 .card {
-    margin: 0 0 5px 10px;
+    margin: 1% 0 0 4%;
+    border-radius: 1rem;
 }
 
 .table-striped {
@@ -20,14 +38,14 @@ body {
     width: 98%
 }
 
-#btn-next_monthly-period {
-    margin: 0% 0% 4% 78%;
+#btn-next_monthly-period, #btn-refresh_history, #btn-create_chart {
+    margin: 2% 0% 2% 78%;
     width: 50%;
 }
 
 .form-control {
     height: calc(1.5rem + 2px);
-    font-size: .75rem;
+    font-size: .65rem;
 }
 
 .btn {
@@ -40,4 +58,40 @@ body {
 
 .stock-lists {
     margin-bottom: 10px;
+}
+
+#buy, #sell {
+    font-size: .85rem;
+}
+
+#chart-area {
+    height: 465px;
+}
+
+.page-footer {
+    margin: 3% 0 0 0;
+    background: #007bff;
+}
+
+.navbar-nav, .nav-link {
+    color: white;
+}
+
+a.nav-item {
+    padding-left: .75rem;
+    padding-right: .75rem;
+}
+
+#mainNav {
+    background: #007bff;
+    border-bottom: green;
+    border-top: 10px;
+}
+
+a:hover {
+    color: black;
+}
+
+.footer-copyright, a, .nav-link {
+    color: white;
 }

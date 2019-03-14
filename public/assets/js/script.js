@@ -1,5 +1,5 @@
 const log = console.log;
-log("Hello World");
+// log("Hello World");
 
 $(document).ready(function () {
 
@@ -59,7 +59,4 @@ $(document).ready(function () {
     //     $("#sell_shares").val("");
 
     // }
-
-
-
 });

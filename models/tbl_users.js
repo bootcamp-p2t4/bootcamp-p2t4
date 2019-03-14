@@ -21,10 +21,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(15),
       //notNull: true
     },
+    user_email: {
+      type: DataTypes.STRING(255),
+      //notNull: true
+    },
     monthly_period: {
       type: DataTypes.INTEGER,
       notNull: true,
       defaultValue: 1,
+    },
+    cash: {
+      type: DataTypes.INTEGER,
+      notNull: true,
+      defaultValue: 100000,
     }
   }, {
     underscored: true,

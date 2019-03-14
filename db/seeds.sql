@@ -112,7 +112,8 @@ INSERT INTO tbl_stocks
     ('Amazon','AMZN', 9, '2009-1-1', 51),
     ('Amazon','AMZN', 10, '2009-2-1', 59),
     ('Amazon','AMZN', 11, '2009-3-1', 64),
-    ('Amazon','AMZN', 12, '2019-3-1', 1655),
+    ('Amazon','AMZN', 12, '2019-3-1', 1655);
+    /*
     ('Cash Available','CASH', 1, '2008-5-1', 1),
     ('Cash Available','CASH', 2, '2008-6-1', 1),
     ('Cash Available','CASH', 3, '2008-7-1', 1),
@@ -125,3 +126,4 @@ INSERT INTO tbl_stocks
     ('Cash Available','CASH', 10, '2009-2-1', 1),
     ('Cash Available','CASH', 11, '2009-3-1', 1),
     ('Cash Available','CASH', 12, '2019-3-1', 1);
+    */

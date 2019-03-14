@@ -37,8 +37,18 @@ module.exports = function (app) {
       }).then(function (sqlStocks) {
         sqlStocks = logic.parseSequelize(sqlStocks);
         log(sqlStocks);
-        res.render("index", {
-          positions: sqlStocks
+        db.tbl_users.findOne({
+          where: {
+            user_name: req.body.user_name
+          }
+        }).then(function (sqlUser) {
+          sqlUser = logic.parseSequelize(sqlUser);
+          log(sqlUser);
+          res.render("index", {
+            positions: sqlStocks,
+            user: sqlUser
+          });
+
         });
       });
     });
@@ -52,63 +62,26 @@ module.exports = function (app) {
         monthly_period: 1
       }
     }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks, ["shares", "valuation"], [0,0]);
+      sqlStocks = logic.parseSequelize(sqlStocks, ["shares", "valuation"], [0, 0]);
       log(sqlStocks);
       res.render("index", {
         positions: sqlStocks
       });
-      //res.json(sqlStocks);
     });
   });
 
-  // POST /positions route
-  app.post("/positions", function (req, res) {
+  // POST /buy route
+  app.post("/buy", function (req, res) {
     log(req.body);
-    db.tbl_stocks.findAll({}).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks);
-      log(sqlStocks);
-      res.render("index", {
-        positions: sqlStocks
-      });
-      //res.json(sqlStocks);
-    });
+    log(`__dirname: ${__dirname}`);
+    
   });
 
-  // GET /test
-  app.get("/test", (req, res) => {
-    log(req.url);
+  // POST /sell route
+  app.post("/sell", function (req, res) {
+    log(req.body);
     log(`__dirname: ${__dirname}`);
-    db.tbl_positions.findAll({}).then(function (sqlPositions) {
-      log(sqlPositions);
-      sqlPositions = logic.parseSequelize(sqlPositions);
-      log(sqlPositions);
-      /*
-      res.render("index", {
-        positions: sqlPositions
-      });
-      */
-      res.json(sqlPositions);
-    });
-  });
-
-  // GET /stocks route via SELECT DISTINCT stock, ticker FROM transactions
-  app.get("/stocks", function (req, res) {
-    log(req.url);
-    log(`__dirname: ${__dirname}`);
-    db.tbl_stocks.findAll({
-      where: {
-        monthly_period: 1
-      }
-    }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks);
-      log(sqlStocks);
-      /*
-      res.render("index", {
-        positions: sqlStocks
-      });
-      */
-      res.json(sqlStocks);
-    });
+    
   });
 
   // GET /transactions route
@@ -126,20 +99,6 @@ module.exports = function (app) {
       */
       res.json(sqlTransactions);
     });
-  });
-
-  // POST /buy route
-  app.post("/buy", function (req, res) {
-    log(req.body);
-    log(`__dirname: ${__dirname}`);
-    res.redirect("/positions");
-  });
-
-  // POST /sell route
-  app.post("/sell", function (req, res) {
-    log(req.body);
-    log(`__dirname: ${__dirname}`);
-    res.redirect("/positions");
   });
 
   // POST /next route

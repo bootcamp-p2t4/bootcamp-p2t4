@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       //notNull: true
     },
     user_email: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(63),
       //notNull: true
     },
     monthly_period: {
@@ -42,12 +42,22 @@ module.exports = (sequelize, DataTypes) => {
 
   // sequelize model table associations
   tbl_users.associate = function (db) {
-    
+
+    tbl_users.belongsTo(db.tbl_periods, {
+      foreignKey: "monthly_period",
+      targetKey: "monthly_period"
+    });
+
     tbl_users.hasMany(db.tbl_transactions, {
       sourceKey: "user_name",
       foreignKey: "user_name"
     });
-    
+
+    tbl_users.hasMany(db.tbl_positions, {
+      sourceKey: "user_name",
+      foreignKey: "user_name"
+    });
+
     // add additional associations inside single tbl_name.associate block
 
   };

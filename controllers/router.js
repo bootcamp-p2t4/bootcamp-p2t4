@@ -29,42 +29,74 @@ module.exports = function (app) {
         user_email: req.body.user_email
       }
     }).then(function (sqlUser) {
-      sqlUser = logic.parseSequelize(sqlUser);
-      log("sqlUser:");
-      log(sqlUser);
-      // respond with stocks as 0 positions
-      db.tbl_stocks.findAll({
-        where: {
-          monthly_period: 1
-        }
-      }).then(function (sqlStocks) {
-        sqlStocks = logic.parseSequelize(sqlStocks);
-        log("sqlStocks:");
-        log(sqlStocks);
-        db.tbl_users.findOne({
-          where: {
-            user_name: req.body.user_name
+      if (!sqlUser[1]) {
+        // if NOT true: new sqlUser
+        log("user already exists");
+      } else {
+        // else new sqlUser
+        log("created new user, sqlUser:");
+        log(sqlUser);
+        db.tbl_positions.bulkCreate(
+          [{
+            user_name: req.body.user_name,
+            ticker: "SP500",
+            ticker_period: "SP500_1",
+            pos_price: 1386
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "DJI",
+            ticker_period: "DJI_1",
+            pos_price: 12818
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "NDAQ",
+            ticker_period: "NDAQ_1",
+            pos_price: 36
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "JPM",
+            ticker_period: "JPM_1",
+            pos_price: 48
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "BAC",
+            ticker_period: "BAC_1",
+            pos_price: 38
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "WFC",
+            ticker_period: "WFC_1",
+            pos_price: 30
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "AAPL",
+            ticker_period: "AAPL_1",
+            pos_price: 25
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "GOOGL",
+            ticker_period: "GOOGL_1",
+            pos_price: 289
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "AMZN",
+            ticker_period: "AMZN_1",
+            pos_price: 78
           }
-        }).then(function (sqlUser) {
-          sqlUser = logic.parseSequelize(sqlUser);
-          log("sqlUser");
-          log(sqlUser);
-          db.tbl_transactions.findAll({
-            where: {
-              user_name: req.body.user_name
-            }
-          }).then(function (sqlTransactions) {
-            sqlTransactions = logic.parseSequelize(sqlTransactions);
-            log("sqlTransactions:");
-            log(sqlTransactions);
-            res.render("index", {
-              positions: sqlStocks,
-              user: sqlUser,
-              transactions: sqlTransactions
-            });
-          });
+          ]
+        ).then(function (sqlPositions) {
+          log("created new positions, sqlPositions:");
+          log(sqlPositions);
         });
-      });
+      } // end if
     });
   });
 
@@ -132,6 +164,7 @@ module.exports = function (app) {
         log("sqlTransactions:");
         log(sqlTransactions);
         res.render("index", {
+          user: sqlUser,
           transactions: sqlTransactions
         });
       });
@@ -161,57 +194,5 @@ module.exports = function (app) {
     log(`__dirname: ${__dirname}`);
     //res.redirect("/positions");
   });
-
-  /*
-
-  // GET route to SELECT *
-  app.get("/stocks/:ticker", function (req, res) {
-    log(req.url);
-    log(`__dirname: ${__dirname}`);
-    // if params
-    if (req.params.ticker) {
-      db.tblStocks.findOne(req.params.ticker, function (mysqlRes) {
-        log(mysqlRes);
-        res.json(mysqlRes);
-      });
-    } else {
-      db.tblStocks.findAll(function (mysqlRes) {
-        log(mysqlRes);
-        res.json(mysqlRes);
-      });
-    }
-  });
-
-  // http post
-  app.post("/", (req, res) => {
-    log(JSON.parse(JSON.stringify(req.body)));
-    db.addBurger(req.body, (sqlResult) => {
-      log("burgers-controller.addBurger:");
-      log(JSON.parse(JSON.stringify(sqlResult)));
-      res.redirect("/");
-    });
-  });
-  // http put
-  // form method only allows get or post
-  app.post("/put", (req, res) => {
-    log(JSON.parse(JSON.stringify(req.body)));
-    db.devourBurger(req.body, (sqlResult) => {
-      log("burgers-controller.devourBurger:");
-      log(JSON.parse(JSON.stringify(sqlResult)));
-      res.redirect("/");
-    });
-  });
-  // http delete
-  // form method only allows get or post
-  app.post("/delete", (req, res) => {
-    log(JSON.parse(JSON.stringify(req.body)));
-    db.vomitBurger(req.body, (sqlResult) => {
-      log("burgers-controller.vomitBurger:");
-      log(JSON.parse(JSON.stringify(sqlResult)));
-      res.redirect("/");
-    });
-  });
-
-  */
 
 };

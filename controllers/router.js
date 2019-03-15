@@ -25,7 +25,8 @@ module.exports = function (app) {
     db.tbl_users.findOrCreate({
       where: {
         user_name: req.body.user_name,
-        user_password: userPassword
+        user_password: userPassword,
+        user_email: req.body.user_email
       }
     }).then(function (sqlUser) {
       log(logic.parseSequelize(sqlUser));
@@ -48,7 +49,6 @@ module.exports = function (app) {
             positions: sqlStocks,
             user: sqlUser
           });
-
         });
       });
     });
@@ -62,7 +62,8 @@ module.exports = function (app) {
         monthly_period: 1
       }
     }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks, ["shares", "valuation"], [0, 0]);
+      sqlStocks = logic.parseSequelize(sqlStocks, ["shares", "valuation", "user_name"], [0, 0, "test_user"]);
+      log("sqlStocks:");
       log(sqlStocks);
       res.render("index", {
         positions: sqlStocks
@@ -70,18 +71,37 @@ module.exports = function (app) {
     });
   });
 
-  // POST /buy route
-  app.post("/buy", function (req, res) {
+  // POST /buy_sell route
+  app.post("/buy_sell", function (req, res) {
     log(req.body);
     log(`__dirname: ${__dirname}`);
-    
-  });
-
-  // POST /sell route
-  app.post("/sell", function (req, res) {
-    log(req.body);
-    log(`__dirname: ${__dirname}`);
-    
+    let shares = logic.negateSellShares(req.body.trx_shares, req.body.buy_sell);
+    db.tbl_transactions.create({
+      user_name: req.body.user_name,
+      monthly_period: req.body.monthly_period,
+      buy_sell: req.body.buy_sell,
+      stock: req.body.stock,
+      ticker: req.body.ticker,
+      shares: shares,
+      price: req.body.price,
+      cash: sahres * req.body.price
+    }).then(function (sqlNewTransaction) {
+      // sqlNewTransaction = logic.parseSequelize(sqlNewTransaction);
+      log("sqlNewTransaction:");
+      log(sqlNewTransaction);
+      db.tbl_transactions.findAll({
+        where: {
+          user_name: req.body.user_name
+        }
+      }).then(function (sqlTransactions) {
+        sqlTransactions = logic.parseSequelize(sqlTransactions, ["cash"], []);
+        log("sqlTransactions:");
+        log(sqlTransactions);
+        res.render("index", {
+          transactions: sqlTransactions
+        });
+      });
+    });
   });
 
   // GET /transactions route

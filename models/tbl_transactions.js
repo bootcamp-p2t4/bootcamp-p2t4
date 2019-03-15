@@ -33,6 +33,14 @@ module.exports = (sequelize, DataTypes) => {
     shares: {
       type: DataTypes.INTEGER,
       notNull: true
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      notNull: true
+    },
+    cash: {
+      type: DataTypes.INTEGER,
+      notNull: true
     }
   }, {
     underscored: true,

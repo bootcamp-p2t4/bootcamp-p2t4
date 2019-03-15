@@ -29,7 +29,9 @@ module.exports = function (app) {
         user_email: req.body.user_email
       }
     }).then(function (sqlUser) {
-      log(logic.parseSequelize(sqlUser));
+      sqlUser = logic.parseSequelize(sqlUser);
+      log("sqlUser:");
+      log(sqlUser);
       // respond with stocks as 0 positions
       db.tbl_stocks.findAll({
         where: {
@@ -37,6 +39,7 @@ module.exports = function (app) {
         }
       }).then(function (sqlStocks) {
         sqlStocks = logic.parseSequelize(sqlStocks);
+        log("sqlStocks:");
         log(sqlStocks);
         db.tbl_users.findOne({
           where: {
@@ -44,10 +47,21 @@ module.exports = function (app) {
           }
         }).then(function (sqlUser) {
           sqlUser = logic.parseSequelize(sqlUser);
+          log("sqlUser");
           log(sqlUser);
-          res.render("index", {
-            positions: sqlStocks,
-            user: sqlUser
+          db.tbl_transactions.findAll({
+            where: {
+              user_name: req.body.user_name
+            }
+          }).then(function (sqlTransactions) {
+            sqlTransactions = logic.parseSequelize(sqlTransactions);
+            log("sqlTransactions:");
+            log(sqlTransactions);
+            res.render("index", {
+              positions: sqlStocks,
+              user: sqlUser,
+              transactions: sqlTransactions
+            });
           });
         });
       });
@@ -62,11 +76,31 @@ module.exports = function (app) {
         monthly_period: 1
       }
     }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks, ["shares", "valuation", "user_name"], [0, 0, "test_user"]);
+      sqlStocks = logic.parseSequelize(sqlStocks, ["user_name"], ["test_user"]);
       log("sqlStocks:");
       log(sqlStocks);
-      res.render("index", {
-        positions: sqlStocks
+      db.tbl_users.findOne({
+        where: {
+          user_name: "test_user"
+        }
+      }).then(function (sqlUser) {
+        //sqlUser = logic.parseSequelize(sqlUser);
+        log("sqlUser");
+        log(sqlUser);
+        db.tbl_transactions.findAll({
+          where: {
+            user_name: "test_user"
+          }
+        }).then(function (sqlTransactions) {
+          sqlTransactions = logic.parseSequelize(sqlTransactions);
+          log("sqlTransactions:");
+          log(sqlTransactions);
+          res.render("index", {
+            positions: sqlStocks,
+            user: sqlUser,
+            transactions: sqlTransactions
+          });
+        });
       });
     });
   });
@@ -84,7 +118,7 @@ module.exports = function (app) {
       ticker: req.body.ticker,
       shares: shares,
       price: req.body.price,
-      cash: sahres * req.body.price
+      cash: shares * req.body.price
     }).then(function (sqlNewTransaction) {
       // sqlNewTransaction = logic.parseSequelize(sqlNewTransaction);
       log("sqlNewTransaction:");
@@ -94,7 +128,7 @@ module.exports = function (app) {
           user_name: req.body.user_name
         }
       }).then(function (sqlTransactions) {
-        sqlTransactions = logic.parseSequelize(sqlTransactions, ["cash"], []);
+        sqlTransactions = logic.parseSequelize(sqlTransactions);
         log("sqlTransactions:");
         log(sqlTransactions);
         res.render("index", {

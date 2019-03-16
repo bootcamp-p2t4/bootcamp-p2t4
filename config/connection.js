@@ -19,7 +19,7 @@ const Sequelize = require("sequelize");
 // Sequelize("database_name_db", "username", "password", {obj});
 let sequelize;
 if (process.env.JAWSDB_URL) {
-  sequelize = new Sequelize(process.env.JAWSDB_URL);
+  sequelize = new Sequelize(process.env.JAWSDB_URL, config);
 } else {
   sequelize = new Sequelize("stock_novice_db", process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
     host: process.env.MYSQL_HOST,

@@ -41,6 +41,10 @@ a.nav-item {
   margin-left: 40%;
 }
 
+.row {
+  margin-top: -75px;
+}
+
 .title {
   color: white;
   font-family: 'Righteous', cursive;

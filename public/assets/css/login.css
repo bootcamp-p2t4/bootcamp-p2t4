@@ -8,12 +8,15 @@ body {
   /* background: linear-gradient(to right, #0062E6, #33AEFF); */
   margin: 0;
   padding: 0;
-}
-
-.jumbotron {
   background-image: url("../images/background1.jpg");
   background-size: cover;
   background-position: center top;
+}
+
+.jumbotron {
+  /* background-image: url("../images/background1.jpg"); */
+  /* background-size: cover; */
+  background-color: transparent;
   margin: 0;
 }
 
@@ -34,7 +37,15 @@ a.nav-item {
   background: #007bff;
 }
 
-.display-4 {
+#welcomeTo {
+  margin-left: 40%;
+}
+
+.row {
+  margin-top: -75px;
+}
+
+.title {
   color: white;
   font-family: 'Righteous', cursive;
   font-size: 95px;
@@ -45,10 +56,11 @@ a.nav-item {
   border: 0;
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  
 }
 
 .card-signin .card-title {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-weight: 300;
   font-size: 1.5rem;
 }
@@ -57,6 +69,12 @@ a.nav-item {
   padding: 0.75rem 1.5rem 1rem 1.5rem;
   background: #e9ecef;
   border-radius: 1rem;
+}
+
+#inputName,
+#inputEmail,
+#inputPassword {
+  font-size: .95rem;
 }
 
 /* .jumbotron {
@@ -145,6 +163,73 @@ a.nav-item {
   font-size: 12px;
   color: #777;
 }
+
+@media only screen and (max-width: 1200px) {
+  #welcomeTo {
+    margin-left: 38%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #welcomeTo {
+    margin-left: 35%;
+  }
+}
+
+@media only screen and (max-width: 736px) and (orientation: landscape) {
+  #welcomeTo {
+    margin-left: 28%;
+  }
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+  #welcomeTo {
+    margin-right: 10%;
+  }
+}
+
+@media only screen and (max-width: 668px) and (orientation: landscape) {
+  #welcomeTo {
+    margin-left: 28%;
+  }
+}
+
+@media only screen and (max-width: 320px) and (orientation: portrait) {
+  #welcomeTo {
+    margin-left: 10%;
+  }
+  .title {
+    padding-top: 10%;
+  }
+}
+
+@media only screen and (max-width: 531px) and (orientation: portrait) {
+  #welcomeTo {
+    margin-left: 10%;
+  }
+  .title {
+    padding-top: 10%;
+  }
+}
+
+@media only screen and (max-width: 376px) and (orientation: portrait) {
+  #welcomeTo {
+    margin-left: 15%;
+  }
+}
+
+@media only screen and (max-width: 640px) and (orientation: landscape) {
+  #welcomeTo {
+    margin-left: 28%;
+  }
+}
+
+@media only screen and (max-width: 415px) and (orientation: portrait) {
+  #welcomeTo {
+    margin-left: 19%;
+  }
+}
+
 /* 
 .btn-google {
   color: white;

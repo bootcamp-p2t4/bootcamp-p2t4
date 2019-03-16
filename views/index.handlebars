@@ -84,7 +84,7 @@
       {{!-- Cash Table COLUMN Names (END) --}}
 
       {{!-- Cash Table FORM (START) --}}
-      {{#each user}}
+      {{!-- {{#each user}} --}}
       <form id="user-cash" method="POST" action="/buy">
         <div class="form-row ml-5" id="user-cash-data">
           <div class="col-sm-3 col-md-3 offset-1">
@@ -99,7 +99,7 @@
           </div>
         </div>
       </form>
-      {{/each}}
+      {{!-- {{/each}} --}}
     </div>
     {{!-- Cash Table FORM (END) --}}
 
@@ -177,128 +177,3 @@
   </div>
 </section>
 <!-- Chart (END) -->
-
-{{!-- Sell Table Column Names (START) --}}
-{{!-- <div class="container" id="border">
-  <h4 class="text-center buy-sell-title">Sell</h4>
-  <div class="row ml-5 pl-4 offset-md-2">
-    <div class="col-md-1 offset-md-1">
-      <h6 class="text-center">Period</h6>
-    </div>
-    <div class="col-md-2">
-      <h6 class="text-center">Stock</h6>
-    </div>
-    <div class="col-md-1 pl-1">
-      <h6 class="text-center">Ticker</h6>
-    </div>
-    <div class="col-md-1 pl-1">
-      <h6 class="text-center">Price</h6>
-    </div>
-    <div class="col-md-1 pl-1">
-      <h6 class="text-center">Shares</h6>
-    </div>
-    <div class="col-md-1 pl-1">
-      <h6 class="text-center">Valuation</h6>
-    </div>
-    <div class="col-md-1 offset-md-1 pl-1">
-      <h6 class="text-center">Sell</h6>
-    </div>
-  </div> --}}
-  {{!-- Sell Table Column Names (END) --}}
-
-  {{!-- Sell Table Form (START) --}}
-  {{!-- {{#each positions}}
-  <form id="form-positions-sell" method="POST" action="/sell">
-    <div class="form-row ml-5 pl-4" id="stockList">
-
-      <div class="col-md-1">
-        <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
-          placeholder="" readonly="readonly">
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" id="stock" name="stock" value="{{this.stock}}" readonly="readonly">
-      </div>
-      <div class="col-md-1">
-        <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" readonly="readonly">
-      </div>
-      <div class="col-md-1">
-        <input type="text" class="form-control" id="price" name="price" value="{{this.price}}" readonly="readonly">
-      </div>
-      <div class="col-md-1">
-        <input type="text" class="form-control" id="shares" name="shares" value="{{this.shares}}" readonly="readonly">
-      </div>
-      <div class="col-md-1">
-        <input type="text" class="form-control" id="valuation" name="valuation" value="{{this.valuation}}" readonly="readonly">
-      </div>
-      <div class="col-md-1">
-        <button type="submit" class="btn btn-success ml-3 mb-2" id="sell">Sell</button>
-      </div>
-      <div class="col-md-1">
-        <input type="number" class="form-control" id="sell_shares" name="sell_shares" placeholder="# shares">
-      </div>
-      <div class="col-md-1">
-        <input type="text" class="form-control" id="username" name="user_name" value="{{this.user_name}}" readonly="readonly">
-      </div>
-    </div>
-  </form>
-  {{/each}}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
-          <button type="submit" class="btn btn-success text-center" id="btn-next_monthly-period">Next Period</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-</section> --}}
-{{!-- Sell Table Form (END) --}}
-
-
-{{!--
-<div>
-  {{#each positions}}
-  <h1>{{this.monthly_period}}</h1>
-  {{/each}}
-</div>
---}}
-
-
-
-{{!-- <h2 class="text-center">Time Series Performance</h2>
-<div class="container" id="border">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card" style="width: 426%;">
-        <div class="card-body">
-          <div class="container">
-            <h4 class="text-center">Period {{this.monthly_period}}</h4>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col" class="text-center" id="positionStock">Stock</th>
-                  <th scope="col" class="text-center" id="positionTicker">Ticker</th>
-                  <th scope="col" class="text-center" id="positionShares">Shares</th>
-                  <th scope="col" class="text-center" id="positionValue">Total Value</th>
-                  <th scope="col" class="text-center" id="positionCash">Cash</th>
-                  <th scope="col" class="text-center" id="positionPortfolioAmount">Portfolio Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id="positionStockData"></td>
-                  <td id="positionTickerData"></td>
-                  <td id="positionSharesData"></td>
-                  <td id="positionTotalValueData"></td>
-                  <td id="positionCashData"></td>
-                  <td id="positionPortfolioAmountData"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> --}}

@@ -121,6 +121,7 @@ module.exports = function (app) {
           }
           ]
         ).then(function (sqlPositions) {
+          sqlPositions = logic.parseSequelize(sqlPositions);
           log("created new positions, sqlPositions:");
           log(sqlPositions);
           res.render("index", {

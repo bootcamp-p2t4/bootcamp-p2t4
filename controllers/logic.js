@@ -30,7 +30,7 @@ module.exports = {
     if (buy_sell == "sell") {
       shares = shares * -1;
     }
-    log(`logic typeof shares: ${typeof(shares)}`);
+    log(`logic shares: ${typeof(shares)} ${shares}`);
     return shares;
   },
 

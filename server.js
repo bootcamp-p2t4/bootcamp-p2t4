@@ -2,6 +2,7 @@
 const log = global.console.log;
 
 // dependencies
+require("dotenv").config();
 const db = require("./models"); // requiring dir defaults to index.js
 const express = require("express");
 const app = express();

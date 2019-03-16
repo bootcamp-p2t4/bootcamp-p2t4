@@ -85,16 +85,16 @@
 
       {{!-- User Table FORM (START) --}}
       {{#each user}}
-      <form id="user-cash" method="POST" action="/next">
+      <form id="user-cash" method="POST" action="/buy">
         <div class="form-row ml-5" id="user-cash-data">
           <div class="col-sm-3 col-md-3 offset-1">
             <input type="text" class="form-control" id="user" name="user" value="{{this.user_name}}" readonly="readonly">
           </div>
           <div class="col-sm-3 col-md-3">
-            <input type="text" class="form-control" id="cash" name="cash" value="{{this.cash}}" readonly="readonly">
+            <input type="text" class="form-control text-right" id="cash" name="cash" value="{{this.cash}}" readonly="readonly">
           </div>
           <div class="col-sm-3 col-md-3">
-            <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
+            <input type="text" class="form-control text-center" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
               readonly="readonly">
           </div>
         </div>
@@ -128,6 +128,7 @@
           <th scope="col-3" class="text-center">Buy/Sell</th>
           <th scope="col-2" class="text-center">Ticker</th>
           <th scope="col-2" class="text-center">Price</th>
+          <th scope="col-2" class="text-center">Shares</th>
           <th scope="col-2" class="text-center">Amount</th>
         </tr>
       </thead>
@@ -139,13 +140,14 @@
           {{!-- <td id="trx_stock">{{this.stock}}</td> --}}
           <td id="trx_ticker">{{this.ticker}}</td>
           <td id="trx_price">{{this.trx_price}}</td>
+          
           <td id="trx_shares">{{this.trx_shares}}</td>
           <td id="trx_value">{{this.trx_value}}</td>
         </tr>
         {{/each}}
       </tbody>
     </table>
-    <div class="container">
+    {{!-- <div class="container">
       <div class="row">
         <div class="col-md-6">
           <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
@@ -153,7 +155,7 @@
           </form>
         </div>
       </div>
-    </div>
+    </div> --}}
     {{!-- <div class="container">
       <div class="row">
         <div class="col-md-6">

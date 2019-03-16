@@ -1,10 +1,10 @@
 "use strict";
 
-// model.tblTransactions
+// model.tbl_positions
 module.exports = (sequelize, DataTypes) => {
 
-  const tbl_transactions = sequelize.define("tbl_transactions", {
-    trx_id: {
+  const tbl_positions = sequelize.define("tbl_positions", {
+    pos_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
@@ -16,11 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     monthly_period: {
       type: DataTypes.INTEGER,
-      notNull: true
-    },
-    buy_sell: {
-      type: DataTypes.STRING(15),
-      notNull: true
+      notNull: true,
+      defaultValue: 1
     },
     ticker: {
       type: DataTypes.STRING(15),
@@ -30,17 +27,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(15),
       notNull: true
     },
-    trx_shares: {
+    pos_shares: {
+      type: DataTypes.INTEGER,
+      notNull: true,
+      defaultValue: 0
+    },
+    pos_price: {
       type: DataTypes.INTEGER,
       notNull: true
     },
-    trx_price: {
+    pos_value: {
       type: DataTypes.INTEGER,
-      notNull: true
-    },
-    trx_value: {
-      type: DataTypes.INTEGER,
-      notNull: true
+      notNull: true,
+      defaultValue: 0
     }
   }, {
     underscored: true,
@@ -48,24 +47,24 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // sequelize model table associations
-  tbl_transactions.associate = function (db) {
+  tbl_positions.associate = function (db) {
 
-    tbl_transactions.belongsTo(db.tbl_users, {
+    tbl_positions.belongsTo(db.tbl_users, {
       foreignKey: "user_name",
       targetKey: "user_name"
     });
 
-    tbl_transactions.belongsTo(db.tbl_periods, {
+    tbl_positions.belongsTo(db.tbl_periods, {
       foreignKey: "monthly_period",
       targetKey: "monthly_period"
     });
 
-    tbl_transactions.belongsTo(db.tbl_stocks, {
+    tbl_positions.belongsTo(db.tbl_stocks, {
       foreignKey: "ticker",
       targetKey: "ticker"
     });
 
-    tbl_transactions.belongsTo(db.tbl_prices, {
+    tbl_positions.belongsTo(db.tbl_prices, {
       foreignKey: "ticker_period",
       targetKey: "ticker_period"
     });
@@ -73,9 +72,7 @@ module.exports = (sequelize, DataTypes) => {
     // add additional associations inside single tbl_name.associate block
 
   };
-  //*/
 
-
-  return tbl_transactions;
+  return tbl_positions;
 
 };

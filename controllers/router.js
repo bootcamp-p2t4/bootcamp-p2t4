@@ -13,7 +13,7 @@ module.exports = function (app) {
   // GET /
   app.get("/", (req, res) => {
     log(req.url);
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "../views/index.html"));
   });
 
   // POST /login
@@ -25,89 +25,182 @@ module.exports = function (app) {
     db.tbl_users.findOrCreate({
       where: {
         user_name: req.body.user_name,
-        user_password: userPassword
+      },
+      defaults: {
+        user_password: userPassword,
+        user_email: req.body.user_email
       }
     }).then(function (sqlUser) {
-      log(logic.parseSequelize(sqlUser));
-      // respond with stocks as 0 positions
-      db.tbl_stocks.findAll({
+      if (!sqlUser[1]) {
+        // if NOT true: new sqlUser
+        sqlUser = logic.parseSequelize(sqlUser);
+        log("user already exists, sqlUser");
+        log(sqlUser);
+        db.tbl_positions.findAll({
+          where: {
+            user_name: req.body.user_name
+          }
+        }).then(function (sqlPositions) {
+          sqlPositions = logic.parseSequelize(sqlPositions);
+          log("sqlPositions:");
+          log(sqlPositions);
+          db.tbl_transactions.findAll({
+            where: {
+              user_name: req.body.user_name
+            }
+          }).then(function (sqlTransactions) {
+            sqlTransactions = logic.parseSequelize(sqlTransactions);
+            log("sqlTransactions:");
+            log(sqlTransactions);
+            res.render("index", {
+              user: sqlUser,
+              positions: sqlPositions,
+              transactions: sqlTransactions
+            });
+          });
+        });
+      } else {
+        // else new sqlUser
+        sqlUser = logic.parseSequelize(sqlUser);
+        log("created new user, sqlUser:");
+        log(sqlUser);
+        db.tbl_positions.bulkCreate(
+          [{
+            user_name: req.body.user_name,
+            ticker: "SP500",
+            ticker_period: "SP500_1",
+            pos_price: 1386
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "DJI",
+            ticker_period: "DJI_1",
+            pos_price: 12818
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "NDAQ",
+            ticker_period: "NDAQ_1",
+            pos_price: 36
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "JPM",
+            ticker_period: "JPM_1",
+            pos_price: 48
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "BAC",
+            ticker_period: "BAC_1",
+            pos_price: 38
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "WFC",
+            ticker_period: "WFC_1",
+            pos_price: 30
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "AAPL",
+            ticker_period: "AAPL_1",
+            pos_price: 25
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "GOOGL",
+            ticker_period: "GOOGL_1",
+            pos_price: 289
+          },
+          {
+            user_name: req.body.user_name,
+            ticker: "AMZN",
+            ticker_period: "AMZN_1",
+            pos_price: 78
+          }
+          ]
+        ).then(function (sqlPositions) {
+          sqlPositions = logic.parseSequelize(sqlPositions);
+          log("created new positions, sqlPositions:");
+          log(sqlPositions);
+          res.render("index", {
+            user: sqlUser,
+            positions: sqlPositions
+          });
+        });
+      } // end if
+    });
+  });
+
+  // GET /stocks route
+  app.get("/stocks", function (req, res) {
+    log(req.url);
+    db.tbl_stocks.findAll({
+      where: {
+        monthly_period: 1
+      }
+    }).then(function (sqlStocks) {
+      sqlStocks = logic.parseSequelize(sqlStocks, ["user_name"], ["test_user"]);
+      log("sqlStocks:");
+      log(sqlStocks);
+      db.tbl_users.findOne({
         where: {
-          monthly_period: 1
+          user_name: "test_user"
         }
-      }).then(function (sqlStocks) {
-        sqlStocks = logic.parseSequelize(sqlStocks);
-        log(sqlStocks);
-        res.render("index", {
-          positions: sqlStocks
+      }).then(function (sqlUser) {
+        //sqlUser = logic.parseSequelize(sqlUser);
+        log("sqlUser");
+        log(sqlUser);
+        db.tbl_transactions.findAll({
+          where: {
+            user_name: "test_user"
+          }
+        }).then(function (sqlTransactions) {
+          sqlTransactions = logic.parseSequelize(sqlTransactions);
+          log("sqlTransactions:");
+          log(sqlTransactions);
+          res.render("index", {
+            positions: sqlStocks,
+            user: sqlUser,
+            transactions: sqlTransactions
+          });
         });
       });
     });
   });
 
-  // GET /positions route
-  app.get("/positions", function (req, res) {
-    log(req.url);
-    db.tbl_stocks.findAll({
-      where: {
-        monthly_period: 1
-      }
-    }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks);
-      log(sqlStocks);
-      res.render("index", {
-        positions: sqlStocks
-      });
-      //res.json(sqlStocks);
-    });
-  });
-
-  // POST /positions route
-  app.post("/positions", function (req, res) {
+  // POST /buy_sell route
+  app.post("/buy_sell", function (req, res) {
     log(req.body);
-    db.tbl_stocks.findAll({}).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks);
-      log(sqlStocks);
-      res.render("index", {
-        positions: sqlStocks
-      });
-      //res.json(sqlStocks);
-    });
-  });
-
-  // GET /test
-  app.get("/test", (req, res) => {
-    log(req.url);
     log(`__dirname: ${__dirname}`);
-    db.tbl_positions.findAll({}).then(function (sqlPositions) {
-      log(sqlPositions);
-      sqlPositions = logic.parseSequelize(sqlPositions);
-      log(sqlPositions);
-      /*
-      res.render("index", {
-        positions: sqlPositions
+    let shares = logic.negateSellShares(req.body.trx_shares, req.body.buy_sell);
+    db.tbl_transactions.create({
+      user_name: req.body.user_name,
+      monthly_period: req.body.monthly_period,
+      buy_sell: req.body.buy_sell,
+      stock: req.body.stock,
+      ticker: req.body.ticker,
+      shares: shares,
+      price: req.body.price,
+      cash: shares * req.body.price
+    }).then(function (sqlNewTransaction) {
+      // sqlNewTransaction = logic.parseSequelize(sqlNewTransaction);
+      log("sqlNewTransaction:");
+      log(sqlNewTransaction);
+      db.tbl_transactions.findAll({
+        where: {
+          user_name: req.body.user_name
+        }
+      }).then(function (sqlTransactions) {
+        sqlTransactions = logic.parseSequelize(sqlTransactions);
+        log("sqlTransactions:");
+        log(sqlTransactions);
+        res.render("index", {
+          user: sqlUser,
+          transactions: sqlTransactions
+        });
       });
-      */
-      res.json(sqlPositions);
-    });
-  });
-
-  // GET /stocks route via SELECT DISTINCT stock, ticker FROM transactions
-  app.get("/stocks", function (req, res) {
-    log(req.url);
-    log(`__dirname: ${__dirname}`);
-    db.tbl_stocks.findAll({
-      where: {
-        monthly_period: 1
-      }
-    }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks);
-      log(sqlStocks);
-      /*
-      res.render("index", {
-        positions: sqlStocks
-      });
-      */
-      res.json(sqlStocks);
     });
   });
 
@@ -128,77 +221,11 @@ module.exports = function (app) {
     });
   });
 
-  // POST /buy route
-  app.post("/buy", function (req, res) {
-    log(req.body);
-    log(`__dirname: ${__dirname}`);
-    res.redirect("/positions");
-  });
-
-  // POST /sell route
-  app.post("/sell", function (req, res) {
-    log(req.body);
-    log(`__dirname: ${__dirname}`);
-    res.redirect("/positions");
-  });
-
   // POST /next route
   app.post("/next", function (req, res) {
     log(req.body);
     log(`__dirname: ${__dirname}`);
     //res.redirect("/positions");
   });
-
-  /*
-
-  // GET route to SELECT *
-  app.get("/stocks/:ticker", function (req, res) {
-    log(req.url);
-    log(`__dirname: ${__dirname}`);
-    // if params
-    if (req.params.ticker) {
-      db.tblStocks.findOne(req.params.ticker, function (mysqlRes) {
-        log(mysqlRes);
-        res.json(mysqlRes);
-      });
-    } else {
-      db.tblStocks.findAll(function (mysqlRes) {
-        log(mysqlRes);
-        res.json(mysqlRes);
-      });
-    }
-  });
-
-  // http post
-  app.post("/", (req, res) => {
-    log(JSON.parse(JSON.stringify(req.body)));
-    db.addBurger(req.body, (sqlResult) => {
-      log("burgers-controller.addBurger:");
-      log(JSON.parse(JSON.stringify(sqlResult)));
-      res.redirect("/");
-    });
-  });
-  // http put
-  // form method only allows get or post
-  app.post("/put", (req, res) => {
-    log(JSON.parse(JSON.stringify(req.body)));
-    db.devourBurger(req.body, (sqlResult) => {
-      log("burgers-controller.devourBurger:");
-      log(JSON.parse(JSON.stringify(sqlResult)));
-      res.redirect("/");
-    });
-  });
-  // http delete
-  // form method only allows get or post
-  app.post("/delete", (req, res) => {
-    log(JSON.parse(JSON.stringify(req.body)));
-    db.vomitBurger(req.body, (sqlResult) => {
-      log("burgers-controller.vomitBurger:");
-      log(JSON.parse(JSON.stringify(sqlResult)));
-      res.redirect("/");
-    });
-  });
-
-  */
 
 };

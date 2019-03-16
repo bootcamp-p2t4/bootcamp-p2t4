@@ -21,24 +21,38 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(15),
       //notNull: true
     },
+    user_email: {
+      type: DataTypes.STRING(63),
+      //notNull: true
+    },
     monthly_period: {
       type: DataTypes.INTEGER,
       notNull: true,
       defaultValue: 1,
+    },
+    cash: {
+      type: DataTypes.INTEGER,
+      notNull: true,
+      defaultValue: 100000,
     }
   }, {
     underscored: true,
     timestamps: true,
   });
 
-  /* sequelize model table associations
+  // sequelize model table associations
   tbl_users.associate = function (db) {
+
+    tbl_users.belongsTo(db.tbl_periods, {
+      foreignKey: "monthly_period",
+      targetKey: "monthly_period"
+    });
 
     tbl_users.hasMany(db.tbl_transactions, {
       sourceKey: "user_name",
       foreignKey: "user_name"
     });
-    
+
     tbl_users.hasMany(db.tbl_positions, {
       sourceKey: "user_name",
       foreignKey: "user_name"

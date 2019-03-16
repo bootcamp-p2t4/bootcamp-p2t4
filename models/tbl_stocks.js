@@ -10,47 +10,40 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       notNull: true
     },
-    stock: {
-      type: DataTypes.STRING(255),
-      notNull: true
-    },
     ticker: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(15),
+      unique: true,
       notNull: true
     },
-    monthly_period: {
-      type: DataTypes.INTEGER,
-      notNull: true
-    },
-    price_date: {
-      type: DataTypes.DATE,
-      notNull: true
-    },
-    price: {
-      type: DataTypes.INTEGER,
+    stock: {
+      type: DataTypes.STRING(31),
       notNull: true
     }
   }, {
     timestamps: false
   });
 
-  /* sequelize model table associations
-  tbl_prices.associate = function (db) {
+  // sequelize model table associations
+  tbl_stocks.associate = function (db) {
 
-    tbl_prices.belongsTo(db.tbl_positions, {
-      foreignKey: "ticker",
-      targetKey: "ticker"
+    tbl_stocks.hasMany(db.tbl_prices, {
+      sourceKey: "ticker",
+      foreignKey: "ticker"
     });
 
-    tbl_prices.belongsTo(db.tbl_transactions, {
-      foreignKey: "ticker",
-      targetKey: "ticker"
+    tbl_stocks.hasMany(db.tbl_transactions, {
+      sourceKey: "ticker",
+      foreignKey: "ticker"
+    });
+
+    tbl_stocks.hasMany(db.tbl_positions, {
+      sourceKey: "ticker",
+      foreignKey: "ticker"
     });
 
     // add additional associations inside single tbl_name.associate block
 
   };
-  //*/
 
   return tbl_stocks;
 

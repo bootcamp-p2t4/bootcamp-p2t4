@@ -18,8 +18,8 @@ const Sequelize = require("sequelize");
 // sequelize (lower case) will reference connection to mysql database
 // Sequelize("database_name_db", "username", "password", {obj});
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+if (process.env.JAWSDB_URL) {
+  sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   sequelize = new Sequelize("stock_novice_db", process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
     host: process.env.MYSQL_HOST,

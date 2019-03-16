@@ -1,5 +1,7 @@
 "use strict";
 const log = global.console.log;
+const db = require("../models"); // requiring dir defaults to index.js
+const Op = db.Sequelize.Op;
 
 module.exports = {
 
@@ -16,13 +18,7 @@ module.exports = {
     sqlResults.forEach(element => {
       if (key[0].length > 0) {
         key.forEach((value, index) => {
-          switch (key) {
-          case "cash":
-            element.dataValues[value] = element.dataValues.shares * element.dataValues.price;
-            break;
-          default:
-            element.dataValues[value] = val[index];
-          }
+          element.dataValues[value] = val[index];
         });
       }
       queryData.push(element.dataValues);
@@ -34,7 +30,20 @@ module.exports = {
     if (buy_sell == "sell") {
       shares = shares * -1;
     }
+    log(`logic typeof shares: ${typeof(shares)}`);
     return shares;
+  },
+
+  getCashBalance: (user_name) => {
+    db.tbl_users.findOne({
+      where: {
+        user_name: user_name
+      }
+    }).then(function(sqlUser){
+      log("sqlUser:");
+      log(sqlUser);
+      return sqlUser.dataValues.cash;
+    });
   }
 
 };

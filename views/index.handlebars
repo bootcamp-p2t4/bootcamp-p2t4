@@ -42,7 +42,7 @@
           <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
-          <input type="text" class="form-control text-right" id="price" name="price" value="${{this.pos_price}}" readonly="readonly">
+          <input type="text" class="form-control text-right" id="price" name="price" value="{{this.pos_price}}" readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
           <input type="text" class="form-control text-center" id="shares" name="shares" value="{{this.pos_shares}}" readonly="readonly">
@@ -84,22 +84,22 @@
       {{!-- User Table COLUMN Names (END) --}}
 
       {{!-- User Table FORM (START) --}}
-      {{!-- {{#each user}} --}}
-      <form id="user-cash" method="POST" action="/buy">
+      {{#each user}}
+      <form id="user-cash" method="POST" action="/next">
         <div class="form-row ml-5" id="user-cash-data">
           <div class="col-sm-3 col-md-3 offset-1">
-            <input type="text" class="form-control" id="user" name="user" value="{{user.user_name}}" readonly="readonly">
+            <input type="text" class="form-control" id="user" name="user" value="{{this.user_name}}" readonly="readonly">
           </div>
           <div class="col-sm-3 col-md-3">
-            <input type="text" class="form-control" id="cash" name="cash" value="{{user.cash}}" readonly="readonly">
+            <input type="text" class="form-control" id="cash" name="cash" value="{{this.cash}}" readonly="readonly">
           </div>
           <div class="col-sm-3 col-md-3">
-            <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{user.monthly_period}}"
+            <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
               readonly="readonly">
           </div>
         </div>
       </form>
-      {{!-- {{/each}} --}}
+      {{/each}}
     </div>
     {{!-- User Table FORM (END) --}}
 

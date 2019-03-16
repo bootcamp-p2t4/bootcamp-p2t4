@@ -32,14 +32,17 @@ module.exports = function (app) {
       }
     }).then(function (sqlUser) {
       if (!sqlUser[1]) {
-        // if NOT true: new sqlUser
-        sqlUser = logic.parseSequelize(sqlUser);
+        // if NOT true: existing sqlUser
+        sqlUser = logic.parseSequelize(sqlUser, ["user"], [0]);
         log("user already exists, sqlUser");
         log(sqlUser);
         db.tbl_positions.findAll({
           where: {
             user_name: req.body.user_name
-          }
+          },
+          include: [{
+            model: db.tbl_stocks
+          }]
         }).then(function (sqlPositions) {
           sqlPositions = logic.parseSequelize(sqlPositions);
           log("sqlPositions:");
@@ -133,61 +136,44 @@ module.exports = function (app) {
     });
   });
 
-  // GET /stocks route
-  app.get("/stocks", function (req, res) {
-    log(req.url);
-    db.tbl_stocks.findAll({
-      where: {
-        monthly_period: 1
-      }
-    }).then(function (sqlStocks) {
-      sqlStocks = logic.parseSequelize(sqlStocks, ["user_name"], ["test_user"]);
-      log("sqlStocks:");
-      log(sqlStocks);
-      db.tbl_users.findOne({
-        where: {
-          user_name: "test_user"
-        }
-      }).then(function (sqlUser) {
-        //sqlUser = logic.parseSequelize(sqlUser);
-        log("sqlUser");
-        log(sqlUser);
-        db.tbl_transactions.findAll({
-          where: {
-            user_name: "test_user"
-          }
-        }).then(function (sqlTransactions) {
-          sqlTransactions = logic.parseSequelize(sqlTransactions);
-          log("sqlTransactions:");
-          log(sqlTransactions);
-          res.render("index", {
-            positions: sqlStocks,
-            user: sqlUser,
-            transactions: sqlTransactions
-          });
-        });
-      });
-    });
-  });
-
   // POST /buy_sell route
   app.post("/buy_sell", function (req, res) {
     log(req.body);
     log(`__dirname: ${__dirname}`);
-    let shares = logic.negateSellShares(req.body.trx_shares, req.body.buy_sell);
+    const shares = logic.negateSellShares(req.body.trx_shares, req.body.buy_sell);
+    log(`typeof shares: ${typeof(shares)}`);
+    const value = shares * req.body.price;
+    log(`typeof value: ${typeof(value)}`);
+    // create new transaction
     db.tbl_transactions.create({
       user_name: req.body.user_name,
-      monthly_period: req.body.monthly_period,
+      monthly_period: parseInt(req.body.monthly_period),
       buy_sell: req.body.buy_sell,
-      stock: req.body.stock,
       ticker: req.body.ticker,
-      shares: shares,
-      price: req.body.price,
-      cash: shares * req.body.price
+      trx_shares: shares,
+      trx_price: parseInt(req.body.price),
+      trx_value: value,
+      ticker_period: req.body.ticker.concat("_", req.body.monthly_period)
     }).then(function (sqlNewTransaction) {
       // sqlNewTransaction = logic.parseSequelize(sqlNewTransaction);
       log("sqlNewTransaction:");
       log(sqlNewTransaction);
+      // get user.cash
+      let cash = logic.getCashBalance(req.user.user_name);
+      log(`cash: ${cash}`);
+      // add trx_value
+      cash = cash + value;
+      // update user.cash
+      db.tbl_positions.update({
+        cash: cash,
+        where: {
+          user_name: req.user.user_name
+        }
+      }).then(function (sqlPositionUpdate) {
+        res.redirect("/user");
+      });
+
+      /*
       db.tbl_transactions.findAll({
         where: {
           user_name: req.body.user_name
@@ -201,23 +187,8 @@ module.exports = function (app) {
           transactions: sqlTransactions
         });
       });
-    });
-  });
-
-  // GET /transactions route
-  app.get("/transactions", function (req, res) {
-    log(req.url);
-    log(`__dirname: ${__dirname}`);
-    db.tbl_transactions.findAll({}).then(function (sqlTransactions) {
-      //log(sqlTransactions);
-      sqlTransactions = logic.parseSequelize(sqlTransactions);
-      log(sqlTransactions);
-      /*
-      res.render("index", {
-        stocks: tblStocksResult
-      });
       */
-      res.json(sqlTransactions);
+
     });
   });
 
@@ -226,6 +197,43 @@ module.exports = function (app) {
     log(req.body);
     log(`__dirname: ${__dirname}`);
     //res.redirect("/positions");
+  });
+
+  // GET /user route
+  app.get("/user", function (req, res) {
+    log(req.url);
+    db.tbl_users.findAll({
+      where: {
+        user_name: "test_user"
+      }
+    }).then(function (sqlUser) {
+      sqlUser = logic.parseSequelize(sqlUser);
+      log("sqlUser:");
+      log(sqlUser);
+      db.tbl_positions.findAll({
+        where: {
+          user_name: "test_user"
+        }
+      }).then(function (sqlPositions) {
+        sqlPositions = logic.parseSequelize(sqlPositions);
+        log("sqlPositions:");
+        log(sqlPositions);
+        db.tbl_transactions.findAll({
+          where: {
+            user_name: "test_user"
+          }
+        }).then(function (sqlTransactions) {
+          sqlTransactions = logic.parseSequelize(sqlTransactions);
+          log("sqlTransactions:");
+          log(sqlTransactions);
+          res.render("index", {
+            user: sqlUser,
+            positions: sqlPositions,
+            transactions: sqlTransactions
+          });
+        });
+      });
+    });
   });
 
 };

@@ -41,10 +41,6 @@ a.nav-item {
   margin-left: 40%;
 }
 
-.row {
-  margin-top: -75px;
-}
-
 .title {
   color: white;
   font-family: 'Righteous', cursive;
@@ -235,7 +231,6 @@ a.nav-item {
   color: white;
   background-color: #ea4335;
 }
-
 .btn-facebook {
   color: white;
   background-color: #3b5998;

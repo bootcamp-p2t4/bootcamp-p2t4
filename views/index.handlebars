@@ -31,7 +31,7 @@
     {{!-- Buy Table Form (START) --}}
     {{#each positions}}
     <form id="form-positions-buy" method="POST" action="/buy_sell">
-      <div class="form-row ml-5 pl-4 offset-md-1" id="stockList">
+      <div class="form-row ml-5 pl-4" id="stockList">
         <div class="col-md-1 offset-md-1">
           <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
             readonly="readonly">

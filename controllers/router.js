@@ -13,7 +13,7 @@ module.exports = function (app) {
   // GET /
   app.get("/", (req, res) => {
     log(req.url);
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "../views/index.html"));
   });
 
   // POST /login
@@ -25,15 +25,43 @@ module.exports = function (app) {
     db.tbl_users.findOrCreate({
       where: {
         user_name: req.body.user_name,
+      },
+      defaults: {
         user_password: userPassword,
         user_email: req.body.user_email
       }
     }).then(function (sqlUser) {
       if (!sqlUser[1]) {
         // if NOT true: new sqlUser
-        log("user already exists");
+        sqlUser = logic.parseSequelize(sqlUser);
+        log("user already exists, sqlUser");
+        log(sqlUser);
+        db.tbl_positions.findAll({
+          where: {
+            user_name: req.body.user_name
+          }
+        }).then(function (sqlPositions) {
+          sqlPositions = logic.parseSequelize(sqlPositions);
+          log("sqlPositions:");
+          log(sqlPositions);
+          db.tbl_transactions.findAll({
+            where: {
+              user_name: req.body.user_name
+            }
+          }).then(function (sqlTransactions) {
+            sqlTransactions = logic.parseSequelize(sqlTransactions);
+            log("sqlTransactions:");
+            log(sqlTransactions);
+            res.render("index", {
+              user: sqlUser,
+              positions: sqlPositions,
+              transactions: sqlTransactions
+            });
+          });
+        });
       } else {
         // else new sqlUser
+        sqlUser = logic.parseSequelize(sqlUser);
         log("created new user, sqlUser:");
         log(sqlUser);
         db.tbl_positions.bulkCreate(
@@ -95,6 +123,10 @@ module.exports = function (app) {
         ).then(function (sqlPositions) {
           log("created new positions, sqlPositions:");
           log(sqlPositions);
+          res.render("index", {
+            user: sqlUser,
+            positions: sqlPositions
+          });
         });
       } // end if
     });

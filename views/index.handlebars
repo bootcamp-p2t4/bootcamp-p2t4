@@ -29,7 +29,7 @@
 
     {{!-- Positions Table FORM (START) --}}
     {{#each positions}}
-    <form id="form-positions-buy" method="POST" action="/buy">
+    <form id="form-positions-buy" method="POST" action="/buy_sell">
       <div class="form-row ml-4" id="stockList">
         <div class="col-sm-9 col-md-1 offset-md-1">
           <input type="text" class="form-control text-center" id="monthly_period" name="monthly_period" value="{{this.monthly_period}}"
@@ -42,13 +42,13 @@
           <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
-          <input type="text" class="form-control text-right" id="price" name="price" value="${{this.price}}" readonly="readonly">
+          <input type="text" class="form-control text-right" id="price" name="price" value="${{this.pos_price}}" readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
-          <input type="text" class="form-control text-center" id="shares" name="shares" value="{{this.shares}}" readonly="readonly">
+          <input type="text" class="form-control text-center" id="shares" name="shares" value="{{this.pos_shares}}" readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
-          <input type="text" class="form-control text-right" id="valuation" name="valuation" value="{{this.valuation}}" readonly="readonly">
+          <input type="text" class="form-control text-right" id="valuation" name="valuation" value="{{this.pos_value}}" readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
           <button type="submit" class="btn btn-success ml-3 mb-2" id="buy" name="buy_sell" value="buy">Buy</button>
@@ -68,17 +68,17 @@
     {{!-- Positions Table FORM (END) --}}
 
     {{!-- Cash Table COLUMN Names (START) --}}
-    <h2 class="text-center" id="cashAvailable">Cash Available</h2>
+    <h2 class="text-center" id="cashAvailable">User Portfolio</h2>
     <div class="container">
       <div class="row mt-2 ml-5 user-header-column">
         <div class="col-sm-3 col-md-3 col-lg-3 offset-1">
           <h6 class="text-center user_name-header">User Name</h6>
         </div>
         <div class="col-sm-3 col-md-3 col-lg-3">
-          <h6 class="text-center user_cash-header">Cash</h6>
+          <h6 class="text-center user_cash-header">Cash Available</h6>
         </div>
         <div class="col-sm-3 col-md-3 col-lg-3">
-          <h6 class="text-center user_monthly_period-header">Monthly Period</h6>
+          <h6 class="text-center user_monthly_period-header">Current Monthly Period</h6>
         </div>
       </div>
       {{!-- Cash Table COLUMN Names (END) --}}
@@ -88,13 +88,13 @@
       <form id="user-cash" method="POST" action="/buy">
         <div class="form-row ml-5" id="user-cash-data">
           <div class="col-sm-3 col-md-3 offset-1">
-            <input type="text" class="form-control" id="user" name="user" value="{{user.usernane}}" readonly="readonly">
+            <input type="text" class="form-control" id="user" name="user" value="{{user.user_name}}" readonly="readonly">
           </div>
           <div class="col-sm-3 col-md-3">
             <input type="text" class="form-control" id="cash" name="cash" value="{{user.cash}}" readonly="readonly">
           </div>
           <div class="col-sm-3 col-md-3">
-            <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{user.monthly}}"
+            <input type="text" class="form-control" id="monthly_period" name="monthly_period" value="{{user.monthly_period}}"
               readonly="readonly">
           </div>
         </div>
@@ -125,9 +125,9 @@
       <thead>
         <tr>
           <th scope="col-2" class="text-center">Period #</th>
-          <th scope="col-3" class="text-center">Stock</th>
+          <th scope="col-3" class="text-center">Buy/Sell</th>
           <th scope="col-2" class="text-center">Ticker</th>
-          <th scope="col-2" class="text-center">Buy/Sell</th>
+          <th scope="col-2" class="text-center">Price</th>
           <th scope="col-2" class="text-center">Amount</th>
         </tr>
       </thead>
@@ -136,11 +136,11 @@
         <tr>
           <td id="trx_monthly_period">{{this.monthly_period}}</td>
           <td id="trx_buy_sell">{{this.buy_sell}}</td>
-          <td id="trx_stock">{{this.stock}}</td>
+          {{!-- <td id="trx_stock">{{this.stock}}</td> --}}
           <td id="trx_ticker">{{this.ticker}}</td>
-          <td id="trx_price">{{this.price}}</td>
-          <td id="trx_shares">{{this.shares}}</td>
-          <td id="trx_value">{{this.value}}</td>
+          <td id="trx_price">{{this.trx_price}}</td>
+          <td id="trx_shares">{{this.trx_shares}}</td>
+          <td id="trx_value">{{this.trx_value}}</td>
         </tr>
         {{/each}}
       </tbody>

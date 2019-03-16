@@ -1,4 +1,5 @@
 "use strict";
+require('dotenv').config;
 const log = global.console.log;
 
 // dependencies

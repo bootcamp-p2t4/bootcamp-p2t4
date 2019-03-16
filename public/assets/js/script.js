@@ -27,10 +27,11 @@ $(document).ready(function () {
       } else {
         log("Something went wrong!");
       }
-      $("#inputName").val("");
-      $("#inputEmail").val("");
-      $("#inputPassword").val("");
     });
+
+    $("#inputName").val("");
+    $("#inputEmail").val("");
+    $("#inputPassword").val("");
   });
 
 

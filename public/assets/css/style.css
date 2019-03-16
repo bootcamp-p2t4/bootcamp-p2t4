@@ -18,6 +18,15 @@ html, body{
   border-color: #007bff;
 }
 
+#stocklogo {
+  z-index: -1;
+  width: 35%;
+  height: auto;
+  /* margin: auto; */
+  margin-left: 34%;
+  margin-bottom: 2%;
+}
+
 .title {
   color: white;
   font-family: 'Righteous', cursive;

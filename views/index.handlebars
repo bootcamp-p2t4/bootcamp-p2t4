@@ -42,13 +42,16 @@
           <input type="text" class="form-control" id="ticker" name="ticker" value="{{this.ticker}}" readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
-          <input type="text" class="form-control text-right" id="price" name="price" value="{{this.pos_price}}" readonly="readonly">
+          <input type="text" class="form-control text-right" id="price" name="price" value="{{this.pos_price}}"
+            readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
-          <input type="text" class="form-control text-center" id="shares" name="shares" value="{{this.pos_shares}}" readonly="readonly">
+          <input type="text" class="form-control text-center" id="shares" name="shares" value="{{this.pos_shares}}"
+            readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
-          <input type="text" class="form-control text-right" id="valuation" name="valuation" value="{{this.pos_value}}" readonly="readonly">
+          <input type="text" class="form-control text-right" id="valuation" name="valuation" value="{{this.pos_value}}"
+            readonly="readonly">
         </div>
         <div class="col-sm-9 col-md-1">
           <button type="submit" class="btn btn-success ml-3 mb-2" id="buy" name="buy_sell" value="buy">Buy</button>
@@ -140,31 +143,13 @@
           {{!-- <td id="trx_stock">{{this.stock}}</td> --}}
           <td id="trx_ticker">{{this.ticker}}</td>
           <td id="trx_price">{{this.trx_price}}</td>
-          
+
           <td id="trx_shares">{{this.trx_shares}}</td>
           <td id="trx_value">{{this.trx_value}}</td>
         </tr>
         {{/each}}
       </tbody>
     </table>
-    {{!-- <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <form id="frm-next_monthly_period" method="POST" action="/next_monthly_period">
-            <button type="submit" class="btn btn-primary text-center" id="btn-next_monthly-period">Next Period</button>
-          </form>
-        </div>
-      </div>
-    </div> --}}
-    {{!-- <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <form id="frm-refresh_history" method="GET" action="/refresh_history">
-            <button type="submit" class="btn btn-success text-center" id="btn-refresh_history">Refresh History</button>
-          </form>
-        </div>
-      </div>
-    </div> --}}
   </div>
 </section>
 {{!-- Transactions History (END) --}}

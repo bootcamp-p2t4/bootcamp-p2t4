@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     trx_shares: {
       type: DataTypes.INTEGER,
-      notNull: true
+      notNull: true,
+      defaultValue: 0
     },
     trx_price: {
       type: DataTypes.INTEGER,
@@ -40,7 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     trx_value: {
       type: DataTypes.INTEGER,
-      notNull: true
+      notNull: true,
+      defaultValue: 0
     }
   }, {
     underscored: true,

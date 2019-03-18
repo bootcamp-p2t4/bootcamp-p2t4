@@ -76,11 +76,6 @@ h2 {
   height: 465px;
 }
 
-.page-footer {
-  margin: 3% 0 0 0;
-  background: #007bff;
-}
-
 .navbar-nav,
 .nav-link {
   color: white;
@@ -99,6 +94,10 @@ a.nav-item {
 
 #mainNav {
   background: #007bff;
+}
+
+body::-webkit-scrollbar { 
+  width: 0 !important
 }
 
 .navbar-toggler {
@@ -128,6 +127,10 @@ a:hover {
 a,
 .nav-link {
   color: white;
+}
+
+.page-footer {
+  margin: 3% 0 0 0;
 }
 
 @media only screen and (max-width: 992px) {

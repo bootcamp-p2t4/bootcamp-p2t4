@@ -20,6 +20,13 @@ body {
   margin: 0;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 3% 0 0 0;
+}
+
 .navbar-nav, .nav-link {
   color: white;
 }
@@ -35,6 +42,10 @@ a.nav-item {
 
 #mainNav {
   background: #007bff;
+}
+
+.row {
+  margin-top: -75px;
 }
 
 #welcomeTo {
@@ -73,12 +84,9 @@ a.nav-item {
   font-size: .95rem;
 }
 
-/* .jumbotron {
-    margin-bottom: 0;
-} */
-
-#btn-SignIn {
-    
+#container {
+  min-height:100%;
+  position:relative;
 }
 
 .card-body {

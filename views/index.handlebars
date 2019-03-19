@@ -71,7 +71,7 @@
     {{!-- Positions Table FORM (END) --}}
 
     {{!-- User Table COLUMN Names (START) --}}
-    <h2 class="text-center" id="cashAvailable">User Portfolio</h2>
+    <h2 class="text-center" id="cashAvailable">Cash Available</h2>
     <div class="container">
       <div class="row mt-2 ml-5 user-header-column">
         <div class="col-sm-3 col-md-3 col-lg-3 offset-1">
@@ -123,8 +123,8 @@
 {{!-- Transactions History (START) --}}
 <section id="transactions-section">
   <h2 class="text-center">Transactions History</h2>
-  <div class="container" id="border">
-    <table class="table table-striped">
+  <div class="container table-wrapper-scroll-y my-custom-scrollbar" id="border">
+    <table class="table table-striped table-borderedmb-0">
       <thead>
         <tr>
           <th scope="col-2" class="text-center">Period #</th>
@@ -140,10 +140,8 @@
         <tr>
           <td class="text-center" id="trx_monthly_period">{{this.monthly_period}}</td>
           <td class="text-center" id="trx_buy_sell">{{this.buy_sell}}</td>
-          {{!-- <td id="trx_stock">{{this.stock}}</td> --}}
           <td class="text-center" id="trx_ticker">{{this.ticker}}</td>
           <td class="text-center" id="trx_price">{{this.trx_price}}</td>
-
           <td class="text-center" id="trx_shares">{{this.trx_shares}}</td>
           <td class="text-center" id="trx_value">{{this.trx_value}}</td>
         </tr>

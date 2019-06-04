@@ -20,6 +20,13 @@ body {
   margin: 0;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 3% 0 0 0;
+}
+
 .navbar-nav, .nav-link {
   color: white;
 }
@@ -37,6 +44,10 @@ a.nav-item {
   background: #007bff;
 }
 
+.row {
+  margin-top: -75px;
+}
+
 #welcomeTo {
   margin-left: 40%;
 }
@@ -52,7 +63,6 @@ a.nav-item {
   border: 0;
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  
 }
 
 .card-signin .card-title {
@@ -60,6 +70,7 @@ a.nav-item {
   font-weight: 300;
   font-size: 1.5rem;
 }
+
 
 .card-signin .card-body {
   padding: 0.75rem 1.5rem 1rem 1.5rem;
@@ -73,12 +84,9 @@ a.nav-item {
   font-size: .95rem;
 }
 
-/* .jumbotron {
-    margin-bottom: 0;
-} */
-
-#btn-SignIn {
-    
+#container {
+  min-height:100%;
+  position:relative;
 }
 
 .card-body {

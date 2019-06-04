@@ -92,10 +92,10 @@ d3.json("assets/data/data.json").then(function (data) {
     .attr("x2", width);
 
   focus.append("circle")
-    .attr("r", 7.5);
+    .attr("r",7.5);
 
   focus.append("text")
-    .attr("x", 15)
+    .attr("x", 10)
     .attr("dy", ".31em");
 
   svg.append("rect")
@@ -122,6 +122,6 @@ d3.json("assets/data/data.json").then(function (data) {
       return d.value;
     });
     focus.select(".x-hover-line").attr("y2", height - y(d.value));
-    focus.select(".y-hover-line").attr("x2", width + width);
+    focus.select(".y-hover-line").attr("x2", width);
   }
 });

@@ -76,11 +76,6 @@ h2 {
   height: 465px;
 }
 
-.page-footer {
-  margin: 3% 0 0 0;
-  background: #007bff;
-}
-
 .navbar-nav,
 .nav-link {
   color: white;
@@ -99,6 +94,10 @@ a.nav-item {
 
 #mainNav {
   background: #007bff;
+}
+
+body::-webkit-scrollbar { 
+  width: 0 !important
 }
 
 .navbar-toggler {
@@ -128,6 +127,28 @@ a:hover {
 a,
 .nav-link {
   color: white;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 500px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.table td {
+ padding-top: .25rem;
+ padding-bottom: .25rem; 
+}
+
+.page-footer {
+  margin: 3% 0 0 0;
 }
 
 @media only screen and (max-width: 992px) {
